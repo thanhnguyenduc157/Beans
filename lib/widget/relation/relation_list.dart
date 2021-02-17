@@ -42,8 +42,8 @@ class RelationList extends StatelessWidget {
               Container(
                 color: Colors.white,
                 child: TabBar(
-                  indicatorColor: Color(0xff316beb),
-                  labelColor: Color(0xff316beb),
+                  indicatorColor: Color(0xff88674d),
+                  labelColor: Color(0xff88674d),
                   labelStyle: Styles.tabText,
                   indicatorSize: TabBarIndicatorSize.label,
                   labelPadding: EdgeInsets.only(top: 10),

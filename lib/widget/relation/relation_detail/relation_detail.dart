@@ -349,7 +349,7 @@ class _BeanItem extends State<BeanItem> {
                     child: Padding(
                         padding: EdgeInsets.only(right: 48),
                         child: TextField(
-                          cursorColor: Color(0xff316beb),
+                          cursorColor: Color(0xff88674d),
                           keyboardType: TextInputType.multiline,
                           maxLines: null,
                           decoration: InputDecoration(
@@ -358,7 +358,7 @@ class _BeanItem extends State<BeanItem> {
                                       BorderSide(color: Color(0xffcfcfcf))),
                               focusedBorder: UnderlineInputBorder(
                                   borderSide:
-                                      BorderSide(color: Color(0xff316beb))),
+                                      BorderSide(color: Color(0xff88674d))),
                               contentPadding: EdgeInsets.symmetric(vertical: 1),
                               //Change this value to custom as you like
                               isDense: true,

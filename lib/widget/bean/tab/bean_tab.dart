@@ -105,7 +105,7 @@ class _BeanTabState extends State<BeanTab> {
                 lineHeight: 13.0,
                 percent: double.parse(formatDate(DateTime.now(), [dd])) / 30,
                 backgroundColor: Color(0xffdddddd),
-                progressColor: Color(0xff316beb),
+                progressColor: Color(0xff88674d),
               ),
             ),
           ],
@@ -183,7 +183,7 @@ class _BeanTabState extends State<BeanTab> {
             lineHeight: 13.0,
             percent: double.parse(formatDate(DateTime.now(), [dd])) / 30,
             backgroundColor: Color(0xffdddddd),
-            progressColor: Color(0xff316beb),
+            progressColor: Color(0xff88674d),
           ),
         ),
         InkWell(
