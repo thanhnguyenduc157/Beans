@@ -270,9 +270,9 @@ class DatabaseProvider {
     return '''
     INSERT INTO $relationalCategoriesTable (id, name, icon)
     VALUES
-    (1, "Tôi", "${R.ic_myself}"),
-    (2, "Tha nhân", "${R.ic_other_guys}"),
-    (3, "Chúa", "${R.ic_god}");
+    (1, "Yêu Mình", "${R.ic_myself}"),
+    (2, "Yêu Người", "${R.ic_other_guys}"),
+    (3, "Yêu Chúa", "${R.ic_god}");
     ''';
   }
 

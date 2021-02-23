@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:beans/generated/r.dart';
+import 'package:beans/utils/utils.dart';
 import 'package:beans/value/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -34,6 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Utils.setColorStatusBar();
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
@@ -41,41 +43,63 @@ class _SplashScreenState extends State<SplashScreen> {
         color: Colors.white,
         child: Column(
           children: <Widget>[
-            Expanded(
-              child: Center(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: 150, bottom: 23, left: 0, right: 0),
-                      child: SvgPicture.asset(
-                        R.ic_logo,
-                        height: 122,
-                      ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: 200, bottom: 0, left: 0, right: 0),
+                    child: SvgPicture.asset(
+                      R.ic_logo,
+                      height: 122,
                     ),
-                    Text(
-                      'Thiên Chúa là Tình Yêu\n(1 Ga 4,8)',
-                      style: Styles.textStyleGreyMedium,
-                      textAlign: TextAlign.center,
+                  ),
+
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: GestureDetector(
+                onTap: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 0,top:149, left: 48, right: 48),
+                  child:  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'THE BEANS\n ',
+                          style: Styles.headerSplashStyle,
+                        ),
+                        TextSpan(
+                          text: 'Hộp Đậu Xét Mình',
+                          style: Styles.bodyPurple,
+                        ),
+
+
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: GestureDetector(
-                  onTap: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 30, left: 48, right: 48),
-                    child: Text(
-                      'Skip',
-                      style: Styles.bodyGreyUnderline,
-                    ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: GestureDetector(
+                onTap: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 33, left: 48, right: 48),
+                  child: Text(
+                    'Skip',
+                    style: Styles.bodyGreyUnderline,
                   ),
                 ),
               ),

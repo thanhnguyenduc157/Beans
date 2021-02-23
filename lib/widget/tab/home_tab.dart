@@ -17,17 +17,18 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class HomeTab extends StatelessWidget {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    final userName = Provider.of<AuthProvider>(context, listen: false).name;
+
     return Scaffold(
-      key: _scaffoldKey,
-      appBar: createAppbar(),
+      backgroundColor: Colors.white,
+      appBar: createAppbar(userName),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            titleTop(context),
+            titleTop(userName),
             Provider(
               create: (context) => RelationListProvider(),
               child: getListRelation(),
@@ -119,29 +120,34 @@ class HomeTab extends StatelessWidget {
     );
   }
 
-  GradientAppBar createAppbar() {
+  GradientAppBar createAppbar(String name) {
     return GradientAppBar(
+      brightness: Brightness.light,
+      elevation: 0,
       centerTitle: false,
       titleSpacing: 0.0,
-      flexibleSpace: Image(
+    /*  flexibleSpace: Image(
         image: AssetImage(R.ic_snow_png),
         fit: BoxFit.cover,
-      ),
+      ),*/
+        actions:[Icon(
+          Icons.more_vert,
+          color:  Color(0xff88674d),
+          size: 36.0)],
       title: Container(
         margin: EdgeInsets.only(left: 16),
-        child: SvgPicture.asset(
-          R.ic_snowman,
-          width: 99,
-          height: 43,
+        child: Text(
+          'Hộp Đậu của $name',
+          style: Styles.headingPurple,
         ),
       ),
+
       gradient: GradientApp.gradientAppbar,
       automaticallyImplyLeading: false,
     );
   }
 
-  Column titleTop(BuildContext context) {
-    final userName = Provider.of<AuthProvider>(context, listen: false).name;
+  Column titleTop(String userName) {
 
     return Column(
       children: [

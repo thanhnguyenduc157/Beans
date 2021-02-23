@@ -92,6 +92,7 @@ class AcceptedChallenge extends StatelessWidget {
   Widget buttonFinish(Function finishChallenge) => GradientButton(
         increaseWidthBy: 120,
         increaseHeightBy: 9.0,
+        elevation: 0,
         callback: finishChallenge,
         gradient: GradientApp.gradientButton,
         child: Text('Hoàn thành', style: Styles.buttonText),

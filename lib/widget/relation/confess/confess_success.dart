@@ -37,7 +37,7 @@ class _ConfessSuccessState extends State<ConfessSuccess> {
                 child: SvgPicture.asset(
                   R.ic_close,
                   height: 20,
-                  color: Color(0xff316beb),
+                  color: Color(0xff88674d),
                 ),
               ),
             ),
@@ -105,6 +105,7 @@ class _ConfessSuccessState extends State<ConfessSuccess> {
                 child: GradientButton(
                   increaseWidthBy: 40,
                   increaseHeightBy: 7.0,
+                  elevation: 0,
                   callback: () {},
                   gradient: GradientApp.gradientButton,
                   child: Row(
