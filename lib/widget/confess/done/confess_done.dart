@@ -84,7 +84,14 @@ class _ConfessDoneState extends State<ConfessDone> {
         IconButton(
           icon: Icon(Icons.close, color: Color(0xffdfdddd), size: 30),
           onPressed: () {
-            Navigator.of(context).pop();
+
+            Navigator.pushAndRemoveUntil<dynamic>(
+              context,
+              MaterialPageRoute<dynamic>(
+                builder: (BuildContext context) => HomeScreen(),
+              ),
+                  (route) => false,//if you want to disable back feature set to false
+            );
           },
         ),
       ],
