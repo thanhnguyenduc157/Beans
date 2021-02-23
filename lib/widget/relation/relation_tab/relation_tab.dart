@@ -130,7 +130,7 @@ class EntryItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          CupertinoPageRoute(
+          MaterialPageRoute(
             builder: (context) => RelationDetail(
               categoryId: root.catID,
               categoryTitle: root.catTitle,
@@ -151,7 +151,7 @@ class EntryItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          CupertinoPageRoute(builder: (context) => RelationDetailOther(    categoryId: root.catID,
+          MaterialPageRoute(builder: (context) => RelationDetailOther(    categoryId: root.catID,
             categoryTitle: root.catTitle,
             subcateTitle: root.subcateTitle,)),
         );
