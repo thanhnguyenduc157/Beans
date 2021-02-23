@@ -7,6 +7,7 @@ import 'package:beans/value/styles.dart';
 import 'package:beans/widget/custom/expansion_tile.dart';
 import 'package:beans/widget/relation/relation_detail/relation_detail.dart';
 import 'package:beans/widget/relation/relation_detail/relation_detail_other.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -51,8 +52,13 @@ Widget createListViewCategory(RelationalCategory category) {
 
     data.add(Entry(subcat.name, subcat.icon, details));
   });
+  var entryOther= Entry("Khác", R.ic_more, [], true);
 
-  data.add(Entry("Khác", R.ic_more, [], true));
+  entryOther.catID = -1;
+  entryOther.catTitle = category.name;
+  entryOther.subcateTitle = "Khác";
+
+  data.add(entryOther);
 
   return ListView.builder(
     itemBuilder: (BuildContext context, int index) =>
@@ -124,13 +130,12 @@ class EntryItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
+          CupertinoPageRoute(
             builder: (context) => RelationDetail(
               categoryId: root.catID,
               categoryTitle: root.catTitle,
               detail: root.detail,
               subcateTitle: root.subcateTitle,
-              subcateIcon: root.subcateIcon,
             ),
           ),
         );
@@ -146,12 +151,13 @@ class EntryItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => RelationDetailOther()),
+          CupertinoPageRoute(builder: (context) => RelationDetailOther(    categoryId: root.catID,
+            categoryTitle: root.catTitle,
+            subcateTitle: root.subcateTitle,)),
         );
       },
       child: ListTile(
-          title: Text(root.title, style: Styles.headingGrey),
-          leading: SvgPicture.asset(root.icon, height: 40, width: 53)),
+          title: Text(root.title, style: Styles.headingGrey)),
     );
   }
 
@@ -175,7 +181,6 @@ class EntryItem extends StatelessWidget {
       ),
       children: mapIndexed(root.children,
           (index, item) => _buildTiles(item, index + 1, context)).toList(),
-      leading: SvgPicture.asset(root.icon, height: 40, width: 53),
       headerBackgroundColor: Colors.white,
       iconColor: Color(0xff88674d),
     );

@@ -105,6 +105,7 @@ class _ConfessSuccessState extends State<ConfessSuccess> {
                 child: GradientButton(
                   increaseWidthBy: 40,
                   increaseHeightBy: 7.0,
+                  elevation: 0,
                   callback: () {},
                   gradient: GradientApp.gradientButton,
                   child: Row(

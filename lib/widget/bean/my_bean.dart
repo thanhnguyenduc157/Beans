@@ -9,6 +9,7 @@ class MyBean extends StatelessWidget {
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
+            backgroundColor: Colors.white,
             body: Column(
           children: [
             Container(

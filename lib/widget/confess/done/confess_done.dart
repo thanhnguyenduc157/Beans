@@ -14,13 +14,10 @@ class ConfessDone extends StatefulWidget {
 }
 
 class _ConfessDoneState extends State<ConfessDone> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    Utils.setColorStatusBar();
     return Scaffold(
-      key: _scaffoldKey,
       backgroundColor: Colors.white,
       appBar: createAppbar(),
       body: SingleChildScrollView(
@@ -76,6 +73,7 @@ class _ConfessDoneState extends State<ConfessDone> {
   AppBar createAppbar() {
     return AppBar(
       centerTitle: true,
+      brightness: Brightness.light,
       backgroundColor: Colors.white,
       title: Text(
         'Bản xét mình',
@@ -86,10 +84,7 @@ class _ConfessDoneState extends State<ConfessDone> {
         IconButton(
           icon: Icon(Icons.close, color: Color(0xffdfdddd), size: 30),
           onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
+            Navigator.of(context).pop();
           },
         ),
       ],

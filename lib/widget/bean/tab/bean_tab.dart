@@ -88,7 +88,7 @@ class _BeanTabState extends State<BeanTab> {
                     labelStyle: Theme.of(context)
                         .textTheme
                         .title
-                        .merge(new TextStyle(color: labelColor)),
+                        .merge(new TextStyle(color: Color(0xff7b4d0a))),
                   ));
             }),
             Padding(
@@ -105,7 +105,7 @@ class _BeanTabState extends State<BeanTab> {
                 lineHeight: 13.0,
                 percent: double.parse(formatDate(DateTime.now(), [dd])) / 30,
                 backgroundColor: Color(0xffdddddd),
-                progressColor: Color(0xff88674d),
+                progressColor: Color(0xff316beb),
               ),
             ),
           ],
@@ -183,7 +183,7 @@ class _BeanTabState extends State<BeanTab> {
             lineHeight: 13.0,
             percent: double.parse(formatDate(DateTime.now(), [dd])) / 30,
             backgroundColor: Color(0xffdddddd),
-            progressColor: Color(0xff88674d),
+            progressColor: Color(0xff316beb),
           ),
         ),
         InkWell(

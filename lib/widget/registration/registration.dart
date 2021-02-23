@@ -270,6 +270,7 @@ class Registration extends StatelessWidget {
       child: GradientButton(
         increaseWidthBy: 80,
         increaseHeightBy: 7.0,
+        elevation: 0,
         callback: registration.register,
         isEnabled: registration.isValid,
         gradient: GradientApp.gradientButton,
