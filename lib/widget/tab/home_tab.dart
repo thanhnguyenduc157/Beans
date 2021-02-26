@@ -123,7 +123,7 @@ class HomeTab extends StatelessWidget {
   GradientAppBar createAppbar(String name) {
     return GradientAppBar(
       brightness: Brightness.light,
-      elevation: 0,
+      elevation: 1,
       centerTitle: false,
       titleSpacing: 0.0,
     /*  flexibleSpace: Image(

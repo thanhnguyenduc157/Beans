@@ -45,12 +45,12 @@ Widget createListViewCategory(RelationalCategory category) {
       detailEntry.catID = subcat.relationalCategoryId;
       detailEntry.catTitle = category.name;
       detailEntry.detail = detail;
-      detailEntry.subcateIcon = subcat.icon;
+      detailEntry.description = subcat.description;
       detailEntry.subcateTitle = subcat.name;
       details.add(detailEntry);
     });
 
-    data.add(Entry(subcat.name, subcat.icon, details));
+    data.add(Entry(subcat.name, subcat.description, details));
   });
   var entryOther= Entry("Khác", R.ic_more, [], true);
 
@@ -98,19 +98,18 @@ Widget createTopTitle(BuildContext context) {
 class Entry {
   Entry(
     this.title,
-    this.icon, [
+    this.description, [
     this.children = const <Entry>[],
     this.isOther = false,
   ]);
 
-  final String title;
-  final String icon;
-  final List<Entry> children;
-  final bool isOther;
+   String title;
+   String description;
+   List<Entry> children;
+   bool isOther;
   int catID;
   String catTitle;
   String subcateTitle;
-  String subcateIcon;
   RelationalSubcategoryDetail detail;
 }
 
