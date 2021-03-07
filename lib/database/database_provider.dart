@@ -280,20 +280,20 @@ class DatabaseProvider {
     return '''
     INSERT INTO $relationalSubcategoriesTable (id, relational_category_id, name, description)
     VALUES
-    (1, 1, "Khả năng & Sức khoẻ", "Điều răn 5"),
-    (2, 1, "Của cải & Vật chất", "Điều răn 5"),
-    (3, 1, "Đặc quyền và sự yếu đuối", "Điều răn 5"),
-    (4, 1, "Thời gian và hoàn cảnh", "Điều răn 5"),
+    (1, 1, "Khả năng & Sức khoẻ", "- Điều răn 5 -"),
+    (2, 1, "Của cải & Vật chất","- Điều răn 5 -"),
+    (3, 1, "Đặc quyền và sự yếu đuối", "- Điều răn 5 -"),
+    (4, 1, "Thời gian và hoàn cảnh", "- Điều răn 5 -"),
     
-    (5, 2, "Những người luôn bên tôi", "Điều răn 5"),
-    (6, 2, "Với các thụ tạo & vật chất", "Điều răn 5"),
-    (7, 2, "Thời gian & hoàn cảnh","Điều răn 5"),
-    (8, 2, "Quyền lợi của người khác", "Điều răn 5"),
-    (9, 2, "Quan hệ cộng đồng", "Điều răn 5"),
+    (5, 2, "Những người luôn bên tôi","- Điều răn 5 -"),
+    (6, 2, "Với các thụ tạo & vật chất", "- Điều răn 5 -"),
+    (7, 2, "Thời gian & hoàn cảnh","- Điều răn 5 -"),
+    (8, 2, "Quyền lợi của người khác", "- Điều răn 5 -"),
+    (9, 2, "Quan hệ cộng đồng","- Điều răn 5 -"),
     
-    (10, 3, "Bổn phận tôn giáo", "Điều răn 5"),
-    (11, 3, "Lời Chúa - tin mừng","Điều răn 5"),
-    (12, 3, "Ý Chúa với ý tôi", "Điều răn 5"),
+    (10, 3, "Bổn phận tôn giáo", "- Điều răn 5 -"),
+    (11, 3, "Lời Chúa - tin mừng","- Điều răn 5 -"),
+    (12, 3, "Ý Chúa với ý tôi", "- Điều răn 5 -");
     ''';
   }
 

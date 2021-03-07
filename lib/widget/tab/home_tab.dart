@@ -12,7 +12,6 @@ import 'package:beans/widget/challenge/challenge_view.dart';
 import 'package:beans/widget/relation/relation_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -126,11 +125,7 @@ class HomeTab extends StatelessWidget {
       elevation: 1,
       centerTitle: false,
       titleSpacing: 0.0,
-    /*  flexibleSpace: Image(
-        image: AssetImage(R.ic_snow_png),
-        fit: BoxFit.cover,
-      ),*/
-        actions:[Icon(
+      actions:[Icon(
           Icons.more_vert,
           color:  Color(0xff88674d),
           size: 36.0)],
