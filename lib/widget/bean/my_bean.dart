@@ -13,18 +13,18 @@ class MyBean extends StatelessWidget {
             body: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 20),
-              color: Colors.white,
-              child: TabBar(
-                indicatorColor: Color(0xff88674d),
-                labelColor: Color(0xff88674d),
-                labelStyle: Styles.tabText,
-                indicatorSize: TabBarIndicatorSize.label,
-                labelPadding: EdgeInsets.only(top: 10),
-                tabs: [
-                  Tab(text: 'HŨ ĐẬU'),
-                  Tab(text: 'MỤC TIÊU'),
-                  Tab(text: 'BIỂU HIỆU'),
+              padding: EdgeInsets.only(top: 35),
+                  color: Colors.white,
+                  child: TabBar(
+                    indicatorColor: Color(0xff88674d),
+                    labelColor: Color(0xff88674d),
+                    labelStyle: Styles.tabText,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    labelPadding: EdgeInsets.only(top: 10),
+                    tabs: [
+                      Tab(text: 'HŨ ĐẬU'),
+                      Tab(text: 'MỤC TIÊU'),
+                      Tab(text: 'BIỂU HIỆU'),
                 ],
               ),
             ),

@@ -25,9 +25,20 @@ dependencies:
     git:
       url: https://github.com/YK-Unit/r_dart_library.git
       ref: 0.2.1
+  flutter_launcher_icons: "^0.8.0"
+
+flutter_icons:
+  #  image_path: "assets/images/icon-128x128.png"
+  image_path_android: "assets/app-icon.png"
+  image_path_ios: "assets/app-icon.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true # can specify file name here e.g. "My-Launcher-Icon"
+  adaptive_icon_background: "assets/adaptive-app-icon.png" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/adaptive-app-icon.png" # only available for Android 8.0 devices and above
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 flutter:
   uses-material-design: true
   assets:
