@@ -23,6 +23,9 @@ class AcceptedChallengeProvider with ChangeNotifier {
   int _minutesLeft = 0;
   String get minutesLeft => Utils.getNumberAddZero(_minutesLeft);
 
+  int _secondsLeft = 0;
+  String get secondsLeft => Utils.getNumberAddZero(_secondsLeft);
+
   String get name => _currentChallenge?.name ?? '';
 
   Challenge _currentChallenge;
@@ -45,9 +48,9 @@ class AcceptedChallengeProvider with ChangeNotifier {
   _fetchChallenge() async {
     _user = await _userDao.getOrCreate();
     final currentChallengeLog =
-        await _challengeLogDao.get(_user.currentChallengeLogId);
+    await _challengeLogDao.get(_user.currentChallengeLogId);
     _currentChallenge =
-        await _challengeDao.get(currentChallengeLog.challengeId);
+    await _challengeDao.get(currentChallengeLog.challengeId);
 
     _countdown(currentChallengeLog.dueAt);
   }
@@ -65,7 +68,8 @@ class AcceptedChallengeProvider with ChangeNotifier {
     await _challengeLogDao.update(challengeLog);
 
     // Start countdown for accepting new challenge
-    _user.timeLeftForChallenge = DateTime.now().add(Duration(minutes: 5));
+    _user.timeLeftForChallenge = challengeLog.dueAt;
+
 
     // Increase the green beans
     _user.greenCount += 2;
@@ -78,6 +82,7 @@ class AcceptedChallengeProvider with ChangeNotifier {
   _updateCountDownTime(DiffDate time) {
     _hoursLeft = time.hours;
     _minutesLeft = time.min;
+    _secondsLeft = time.sec;
     blink = !blink;
     notifyListeners();
   }
@@ -121,3 +126,4 @@ class AcceptedChallengeProvider with ChangeNotifier {
     }
   }
 }
+
