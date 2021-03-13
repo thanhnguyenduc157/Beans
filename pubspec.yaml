@@ -76,6 +76,7 @@ flutter:
     - assets/ic_logo.svg
     - assets/ic_more.svg
     - assets/ic_congratulation.svg
+    - assets/ic_congratulation2.svg
     - assets/ic_close_gradient.png
     - assets/ic_expired.png
     - assets/ic_community.svg

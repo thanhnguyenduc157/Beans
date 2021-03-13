@@ -23,7 +23,7 @@ class FinishedChallenge extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: SvgPicture.asset(
-        R.ic_congratulation1,
+        R.ic_congratulation,
         width: 60,
         height: 60,
       ),
