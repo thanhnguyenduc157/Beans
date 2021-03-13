@@ -100,7 +100,7 @@ class _PinCodeScreenState extends State<PinCodeScreen> {
 
   AppBar createAppbar() {
     return AppBar(
-      elevation: 0,
+      elevation: 1,
       brightness: Brightness.light,
       centerTitle: true,
       backgroundColor: Colors.white,

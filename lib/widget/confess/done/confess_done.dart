@@ -1,5 +1,4 @@
 import 'package:beans/generated/r.dart';
-import 'package:beans/utils/utils.dart';
 import 'package:beans/value/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -82,15 +81,15 @@ class _ConfessDoneState extends State<ConfessDone> {
       automaticallyImplyLeading: false,
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.close, color: Color(0xffdfdddd), size: 30),
+          icon: Icon(Icons.close, color: Color(0xff88674d), size: 30),
           onPressed: () {
-
             Navigator.pushAndRemoveUntil<dynamic>(
               context,
               MaterialPageRoute<dynamic>(
                 builder: (BuildContext context) => HomeScreen(),
               ),
-                  (route) => false,//if you want to disable back feature set to false
+              (route) =>
+                  false, //if you want to disable back feature set to false
             );
           },
         ),

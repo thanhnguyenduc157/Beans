@@ -104,4 +104,7 @@ class Styles {
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+  static TextStyle descriptionGrey = GoogleFonts.montserrat(
+      fontSize: 14, color: Color(0xa6a5a5), fontWeight: FontWeight.w500);
 }

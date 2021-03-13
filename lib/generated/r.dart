@@ -40,4 +40,5 @@ class R {
   static const String ic_god_vs_me = "assets/ic_god_vs_me.svg";
   static const String ic_god_word = "assets/ic_god_word.svg";
   static const String ic_religion = "assets/ic_religion.svg";
+  static const String slpash_gif = "assets/splash.gif";
 }

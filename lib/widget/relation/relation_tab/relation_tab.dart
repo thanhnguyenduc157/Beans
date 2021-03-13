@@ -1,6 +1,5 @@
 import 'package:beans/generated/r.dart';
 import 'package:beans/model/relational_category.dart';
-import 'package:beans/model/relational_subcategory.dart';
 import 'package:beans/model/relational_subcategory_detail.dart';
 import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/value/styles.dart';
@@ -25,7 +24,7 @@ class RelationTab extends StatelessWidget {
         child: Column(
           children: [
             createTopTitle(context),
-            createListViewCategory(category),
+            createListViewCategory(category, context),
           ],
         ),
       ),
@@ -33,8 +32,10 @@ class RelationTab extends StatelessWidget {
   }
 }
 
-Widget createListViewCategory(RelationalCategory category) {
+Widget createListViewCategory(
+    RelationalCategory category, BuildContext context) {
   List<Entry> data = [];
+  final userName = Provider.of<AuthProvider>(context, listen: false).name;
 
   var subcategories = category.subcategories;
   subcategories.forEach((subcat) {
@@ -45,14 +46,15 @@ Widget createListViewCategory(RelationalCategory category) {
       detailEntry.catID = subcat.relationalCategoryId;
       detailEntry.catTitle = category.name;
       detailEntry.detail = detail;
-      detailEntry.subcateIcon = subcat.icon;
+      detailEntry.description = subcat.description;
       detailEntry.subcateTitle = subcat.name;
       details.add(detailEntry);
     });
 
-    data.add(Entry(subcat.name, subcat.icon, details));
+    data.add(Entry(subcat.name, subcat.description, details));
   });
-  var entryOther= Entry("Khác", R.ic_more, [], true);
+  var entryOther =
+      Entry("Khác", "- $userName muốn ghi lại điều gì khác -", [], true);
 
   entryOther.catID = -1;
   entryOther.catTitle = category.name;
@@ -98,19 +100,18 @@ Widget createTopTitle(BuildContext context) {
 class Entry {
   Entry(
     this.title,
-    this.icon, [
+    this.description, [
     this.children = const <Entry>[],
     this.isOther = false,
   ]);
 
-  final String title;
-  final String icon;
-  final List<Entry> children;
-  final bool isOther;
+   String title;
+   String description;
+   List<Entry> children;
+   bool isOther;
   int catID;
   String catTitle;
   String subcateTitle;
-  String subcateIcon;
   RelationalSubcategoryDetail detail;
 }
 
@@ -142,7 +143,7 @@ class EntryItem extends StatelessWidget {
       },
       child: ListTile(
           title: Text(position.toString() + ". " + root.title,
-              style: Styles.bodyGrey)),
+              style: Styles.titlePurple)),
     );
   }
 
@@ -151,13 +152,31 @@ class EntryItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => RelationDetailOther(    categoryId: root.catID,
-            categoryTitle: root.catTitle,
-            subcateTitle: root.subcateTitle,)),
+          MaterialPageRoute(
+              builder: (context) => RelationDetailOther(
+                    categoryId: root.catID,
+                    categoryTitle: root.catTitle,
+                    subcateTitle: root.subcateTitle,
+                  )),
         );
       },
       child: ListTile(
-          title: Text(root.title, style: Styles.headingGrey)),
+          trailing:
+              SvgPicture.asset(R.ic_add, height: 15, color: Color(0xff88674d)),
+          title: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: '${root.title}\n',
+                  style: Styles.headingGrey,
+                ),
+                TextSpan(
+                  text: root.description,
+                  style: Styles.hintGrey,
+                ),
+              ],
+            ),
+          )),
     );
   }
 
@@ -175,9 +194,19 @@ class EntryItem extends StatelessWidget {
   Widget createParenItem(Entry root, int position, BuildContext context) {
     return CustomExpansionTile(
       key: PageStorageKey<Entry>(root),
-      title: Text(
-        root.title,
-        style: Styles.headingGrey,
+      title: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: '${root.title}\n',
+              style: Styles.headingGrey,
+            ),
+            TextSpan(
+              text: root.description,
+              style: Styles.hintGrey,
+            ),
+          ],
+        ),
       ),
       children: mapIndexed(root.children,
           (index, item) => _buildTiles(item, index + 1, context)).toList(),
