@@ -24,7 +24,7 @@ class _ConfessSuccessState extends State<ConfessSuccess> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 40, right: 19),
+            margin: EdgeInsets.only(top: 60, right: 19),
             child: GestureDetector(
               onTap: () {
                 Navigator.pushReplacement(

@@ -13,7 +13,7 @@ class MyBean extends StatelessWidget {
             body: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 35),
+              padding: EdgeInsets.only(top: 40),
                   color: Colors.white,
                   child: TabBar(
                     indicatorColor: Color(0xff88674d),
