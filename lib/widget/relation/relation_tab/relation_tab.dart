@@ -23,7 +23,6 @@ class RelationTab extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            createTopTitle(context),
             createListViewCategory(category, context),
           ],
         ),
@@ -62,13 +61,15 @@ Widget createListViewCategory(
 
   data.add(entryOther);
 
-  return ListView.builder(
-    itemBuilder: (BuildContext context, int index) =>
-        EntryItem(data[index], index, data.length),
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    itemCount: data.length,
-  );
+  return Padding(
+      padding: EdgeInsets.all(5),
+      child: ListView.builder(
+        itemBuilder: (BuildContext context, int index) =>
+            EntryItem(data[index], index, data.length),
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: data.length,
+      ));
 }
 
 Widget createTopTitle(BuildContext context) {

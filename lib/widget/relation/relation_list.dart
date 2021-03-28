@@ -1,11 +1,9 @@
-import 'package:beans/generated/r.dart';
 import 'package:beans/model/relational_category.dart';
 import 'package:beans/utils/utils.dart';
 import 'package:beans/value/gradient.dart';
 import 'package:beans/value/styles.dart';
 import 'package:beans/widget/relation/relation_tab/relation_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class RelationList extends StatelessWidget {
@@ -43,12 +41,14 @@ class RelationList extends StatelessWidget {
                 color: Colors.white,
                 child: TabBar(
                   indicatorColor: Color(0xff88674d),
-                  labelColor: Color(0xff88674d),
-                  labelStyle: Styles.tabText,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  labelPadding: EdgeInsets.only(top: 10),
-                  tabs: categories.map((cat) => Tab(text: cat.name.toUpperCase())).toList(),
-                ),
+                      labelColor: Color(0xff88674d),
+                      labelStyle: Styles.tabText,
+                      indicatorSize: TabBarIndicatorSize.label,
+                      labelPadding: EdgeInsets.only(top: 1),
+                      tabs: categories
+                          .map((cat) => Tab(text: cat.name.toUpperCase()))
+                          .toList(),
+                    ),
               ),
               Opacity(
                 opacity: 0.2701590401785715,

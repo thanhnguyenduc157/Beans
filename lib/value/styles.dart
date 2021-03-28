@@ -86,7 +86,7 @@ class Styles {
       GoogleFonts.montserrat(fontSize: 17, fontWeight: FontWeight.w700);
 
   static TextStyle hintGrey = GoogleFonts.montserrat(
-      fontSize: 14, color: Colors.grey[300], fontWeight: FontWeight.w400);
+      fontSize: 14, color: Colors.grey[500], fontWeight: FontWeight.w400);
   static TextStyle textStyleGreyMedium = GoogleFonts.montserrat(
       fontSize: 17, color: Colors.grey[700], fontWeight: FontWeight.w500);
 

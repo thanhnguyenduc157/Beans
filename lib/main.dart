@@ -11,7 +11,6 @@
 
 import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/provider/registration_provider.dart';
-import 'package:beans/utils/utils.dart';
 import 'package:beans/value/styles.dart';
 import 'package:beans/widget/bean/my_bean.dart';
 import 'package:beans/widget/confess/pin_code/pin_code.dart';

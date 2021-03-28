@@ -8,6 +8,7 @@ import 'package:beans/provider/relation_list_provider.dart';
 import 'package:beans/utils/utils.dart';
 import 'package:beans/value/gradient.dart';
 import 'package:beans/value/styles.dart';
+import 'package:beans/widget/about/about_beans.dart';
 import 'package:beans/widget/challenge/challenge_view.dart';
 import 'package:beans/widget/relation/relation_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,7 +24,7 @@ class HomeTab extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: createAppbar(userName),
+      appBar: createAppbar(userName, context),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -119,16 +120,25 @@ class HomeTab extends StatelessWidget {
     );
   }
 
-  GradientAppBar createAppbar(String name) {
+  GradientAppBar createAppbar(String name, BuildContext context) {
     return GradientAppBar(
       brightness: Brightness.light,
       elevation: 1,
       centerTitle: false,
       titleSpacing: 0.0,
-      actions:[Icon(
-          Icons.more_vert,
-          color:  Color(0xff88674d),
-          size: 36.0)],
+      actions: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AboutBeans(),
+              ),
+            );
+          },
+          child: Icon(Icons.more_vert, color: Color(0xff88674d), size: 36.0),
+        )
+      ],
       title: Container(
         margin: EdgeInsets.only(left: 16),
         child: Text(
@@ -136,7 +146,6 @@ class HomeTab extends StatelessWidget {
           style: Styles.headingPurple,
         ),
       ),
-
       gradient: GradientApp.gradientAppbar,
       automaticallyImplyLeading: false,
     );

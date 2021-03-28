@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:beans/generated/r.dart';
 import 'package:beans/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gifimage/flutter_gifimage.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../main.dart';
 
@@ -17,7 +17,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   Timer _timer;
-  GifController controller1, controller2, controller3, controller4;
 
   _SplashScreenState() {
     _timer = new Timer(const Duration(milliseconds: 4000), () {
@@ -31,20 +30,6 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     // TODO: implement initState
-    controller1 = GifController(vsync: this);
-    controller2 = GifController(vsync: this);
-    controller4 = GifController(vsync: this);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller1.repeat(min: 0, max: 53, period: Duration(milliseconds: 200));
-    });
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller2.repeat(min: 0, max: 13, period: Duration(milliseconds: 200));
-      controller4.repeat(min: 0, max: 13, period: Duration(milliseconds: 200));
-    });
-    controller3 = GifController(
-        vsync: this,
-        duration: Duration(milliseconds: 200),
-        reverseDuration: Duration(milliseconds: 200));
     super.initState();
   }
 
@@ -63,12 +48,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: Container(
           color: Colors.white,
           child: Center(
-            child:
-                /* GifImage(
-            controller: controller2,
-            image: AssetImage(R.slpash_gif),
-          ),*/
-                Image.asset(R.slpash_gif),
+            child: Lottie.asset(R.splash),
           )
           /*  Column(
           children: <Widget>[
