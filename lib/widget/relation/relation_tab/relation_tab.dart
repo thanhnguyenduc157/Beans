@@ -105,10 +105,10 @@ class Entry {
     this.isOther = false,
   ]);
 
-   String title;
-   String description;
-   List<Entry> children;
-   bool isOther;
+  String title;
+  String description;
+  List<Entry> children;
+  bool isOther;
   int catID;
   String catTitle;
   String subcateTitle;

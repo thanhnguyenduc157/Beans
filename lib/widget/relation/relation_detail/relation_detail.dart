@@ -246,6 +246,7 @@ class Topic {
 class Bean {
   Bean(this.title);
 
+
   final String title;
 }
 
