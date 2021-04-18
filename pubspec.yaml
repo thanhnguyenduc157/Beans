@@ -85,6 +85,7 @@ flutter:
     - assets/ic_god_word.svg
     - assets/ic_religion.svg
     - assets/splash.gif
+    - assets/challengeviewbottom.png
 flr:
   core_version: 3.1.0
   dartfmt_line_length: 80

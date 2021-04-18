@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:beans/generated/r.dart';
 import 'package:beans/model/relational_category.dart';
 import 'package:beans/provider/auth_provider.dart';
@@ -11,7 +11,6 @@ import 'package:beans/value/styles.dart';
 import 'package:beans/widget/challenge/challenge_view.dart';
 import 'package:beans/widget/relation/relation_list.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -27,15 +26,107 @@ class HomeTab extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            titleTop(userName),
-            Provider(
-              create: (context) => RelationListProvider(),
-              child: getListRelation(),
+            new Container(
+              height: MediaQuery.of(context).size.height*0.56,
+              child: Column(
+                children:<Widget>[
+                  titleTop(userName),
+                  Provider(
+                    create: (context) => RelationListProvider(),
+                    child: getListRelation(),
+                  ),
+                  divider(),
+                ],
+              ),
             ),
-            divider(),
-            ChangeNotifierProvider(
-              create: (context) => ChallengeProvider(),
-              child: ChallengeView(),
+            new Container(
+              child:
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      new Container(
+                        height: 30,
+                        width: 60,
+                        decoration: new BoxDecoration(
+                          color: Colors.orangeAccent,
+                          borderRadius: new BorderRadius.only(
+                            topLeft: const Radius.circular(50),
+                            topRight: const Radius.circular(50),
+                          ),
+                        ),
+                        child: new IconButton(
+                            icon: const Icon(Icons.keyboard_arrow_up),
+                            iconSize:35.0,
+                            color: const Color(0xFFffffff),
+                            padding: const EdgeInsets.all(0.0),
+                            alignment: Alignment.center,
+                            onPressed: (){
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context){
+                                    return Container(
+                                      height: 350,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          new Container(
+                                            color: Colors.orangeAccent,
+                                            width:MediaQuery.of(context).size.width,
+                                            height:3,
+                                          ),
+                                          new Container(
+                                            padding: const EdgeInsets.all(0.0),
+                                            height: 30,
+                                            width: 60,
+                                            decoration: new BoxDecoration(
+                                              color:Colors.orangeAccent,
+                                              borderRadius: new BorderRadius.only(
+                                                bottomRight: const Radius.circular(50),
+                                                bottomLeft: const Radius.circular(50),
+                                              )
+                                            ),
+                                            child: new IconButton(
+                                                icon: Icon(Icons.keyboard_arrow_down),
+                                                iconSize:35.0,
+                                                color: const Color(0XFFffffff),
+                                                padding: const EdgeInsets.all(0.0),
+                                                alignment: Alignment.center,
+                                                onPressed: () =>Navigator.pop(context),
+                                            ),
+                                          ),
+                                          ChangeNotifierProvider(
+                                            create:(context) => ChallengeProvider(),
+                                            child: ChallengeView(),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                              );
+                            },
+                        ),
+                      ),
+                    ],
+                  ),
+                  new Container(
+                    color: Colors.orangeAccent,
+                    width:MediaQuery.of(context).size.width,
+                    height:3,
+                  ),
+                  Column(
+                    children:<Widget>[
+                      new Image.asset(
+                        'assets/challengeviewbottom.png',
+                        fit:BoxFit.fill,
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -44,6 +135,16 @@ class HomeTab extends StatelessWidget {
       // endDrawer: SlidingMenu(),
     );
   }
+
+  Widget titleChallenge() => RichText(
+    textAlign: TextAlign.center,
+    text: TextSpan(
+      style: Styles.headingPurple,
+      children: [
+        TextSpan(text: 'Thử thách 24 giờ  ')
+      ],
+    ),
+  );
 
   Widget divider() {
     return Opacity(
