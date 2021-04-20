@@ -24,10 +24,12 @@ class HomeTab extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: createAppbar(userName),
       body: SingleChildScrollView(
+        child: Container(
+          height:MediaQuery.of(context).size.height*0.80,
         child: Column(
           children: [
-            new Container(
-              height: MediaQuery.of(context).size.height*0.56,
+            new Expanded(
+              flex:4,
               child: Column(
                 children:<Widget>[
                   titleTop(userName),
@@ -39,9 +41,12 @@ class HomeTab extends StatelessWidget {
                 ],
               ),
             ),
-            new Container(
+            new Expanded(
+              flex:2,
               child:
               Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Row(
@@ -131,6 +136,7 @@ class HomeTab extends StatelessWidget {
           ],
         ),
       ),
+    ),
       // TODO: Not implemnet yet
       // endDrawer: SlidingMenu(),
     );
