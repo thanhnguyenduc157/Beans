@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/provider/bean_provider.dart';
 import 'package:beans/utils/utils.dart';
 import 'package:beans/value/styles.dart';
@@ -32,6 +33,7 @@ class _BeanTabState extends State<BeanTab> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<AuthProvider>(context);
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
