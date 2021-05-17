@@ -2,6 +2,7 @@ import 'package:beans/generated/r.dart';
 import 'package:beans/model/relational_category.dart';
 import 'package:beans/model/relational_subcategory_detail.dart';
 import 'package:beans/provider/auth_provider.dart';
+import 'package:beans/provider/relation_detail_provider.dart';
 import 'package:beans/value/styles.dart';
 import 'package:beans/widget/custom/expansion_tile.dart';
 import 'package:beans/widget/relation/relation_detail/relation_detail.dart';
@@ -106,10 +107,10 @@ class Entry {
     this.isOther = false,
   ]);
 
-   String title;
-   String description;
-   List<Entry> children;
-   bool isOther;
+  String title;
+  String description;
+  List<Entry> children;
+  bool isOther;
   int catID;
   String catTitle;
   String subcateTitle;
@@ -133,11 +134,14 @@ class EntryItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => RelationDetail(
-              categoryId: root.catID,
-              categoryTitle: root.catTitle,
-              detail: root.detail,
-              subcateTitle: root.subcateTitle,
+            builder: (context) => ChangeNotifierProvider(
+              create: (context) => RelationDetailProvider(
+                root.catID,
+                root.catTitle,
+                root.subcateTitle,
+                root.detail,
+              ),
+              child: RelationDetail(),
             ),
           ),
         );

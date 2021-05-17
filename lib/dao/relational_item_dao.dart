@@ -12,11 +12,7 @@ class RelationalItemDao {
   Future<List<RelationalItem>> getListRelationalItem() async {
     final db = await dbProvider.database;
     List<Map<String, dynamic>> result;
-    result = await db.query(
-      relationalItemsTable,
-      where: 'is_Confess = ?',
-      whereArgs: [0],
-    );
+    result = await db.query(relationalItemsTable);
     List<RelationalItem> relationalItems = result.isNotEmpty
         ? result.map((item) => RelationalItem.fromMap(item)).toList()
         : [];
