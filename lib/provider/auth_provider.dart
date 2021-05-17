@@ -20,7 +20,6 @@ class AuthProvider with ChangeNotifier {
   int get greenCount => _user.greenCount;
   int get blackCount => _user.blackCount;
 
-
   User _user;
   final _userDao = UserDao();
 
@@ -39,6 +38,18 @@ class AuthProvider with ChangeNotifier {
     state = ViewState.home;
   }
 
+  updateGreenBean(int count) async {
+    _user.greenCount = count;
+    _userDao.update(_user);
+    notifyListeners();
+  }
+
+  updateBlackBean(int count) async {
+    _user.blackCount = count;
+    _userDao.update(_user);
+    notifyListeners();
+  }
+
   _fetchState() async {
     _user = await _userDao.get();
 
@@ -48,8 +59,5 @@ class AuthProvider with ChangeNotifier {
     }
 
     state = ViewState.home;
-  }
-  bean() async{
-    _user = await _userDao.get();
   }
 }

@@ -48,9 +48,9 @@ class AcceptedChallengeProvider with ChangeNotifier {
   _fetchChallenge() async {
     _user = await _userDao.getOrCreate();
     final currentChallengeLog =
-    await _challengeLogDao.get(_user.currentChallengeLogId);
+        await _challengeLogDao.get(_user.currentChallengeLogId);
     _currentChallenge =
-    await _challengeDao.get(currentChallengeLog.challengeId);
+        await _challengeDao.get(currentChallengeLog.challengeId);
 
     _countdown(currentChallengeLog.dueAt);
   }
@@ -70,11 +70,7 @@ class AcceptedChallengeProvider with ChangeNotifier {
     // Start countdown for accepting new challenge
     _user.timeLeftForChallenge = challengeLog.dueAt;
 
-
-    // Increase the green beans
-    _user.greenCount += 2;
-
-    _userDao.update(_user);
+    await _userDao.update(_user);
 
     challengeProvider.state = ChallengeState.finishedChallenge;
   }
@@ -126,4 +122,3 @@ class AcceptedChallengeProvider with ChangeNotifier {
     }
   }
 }
-
