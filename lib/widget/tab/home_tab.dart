@@ -8,6 +8,7 @@ import 'package:beans/provider/relation_list_provider.dart';
 import 'package:beans/utils/utils.dart';
 import 'package:beans/value/gradient.dart';
 import 'package:beans/value/styles.dart';
+import 'package:beans/widget/about/about_beans.dart';
 import 'package:beans/widget/challenge/challenge_view.dart';
 import 'package:beans/widget/relation/relation_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,7 +23,7 @@ class HomeTab extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: createAppbar(userName),
+      appBar: createAppbar(userName, context),
       body: SingleChildScrollView(
         child: Container(
           height:MediaQuery.of(context).size.height*0.80,
@@ -33,6 +34,7 @@ class HomeTab extends StatelessWidget {
               child: Column(
                 children:<Widget>[
                   titleTop(userName),
+                  godWordText(),
                   Provider(
                     create: (context) => RelationListProvider(),
                     child: getListRelation(),
@@ -179,7 +181,6 @@ class HomeTab extends StatelessWidget {
       // endDrawer: SlidingMenu(),
     );
   }
-
   Widget titleChallenge() => RichText(
     textAlign: TextAlign.center,
     text: TextSpan(
@@ -197,12 +198,25 @@ class HomeTab extends StatelessWidget {
           height: 1,
           decoration: BoxDecoration(
               border: Border.all(color: const Color(0xff979797), width: 1))),
+  Widget godWordText() {
+    return Padding(
+      padding: EdgeInsets.only(top: 0, bottom: 30),
+      child: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: '“Bình an cho anh em”(Lc 24, 36)',
+              style: Styles.headingPurple,
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   Widget getListRelation() {
     return Padding(
-      padding: const EdgeInsets.only(left: 0, right: 0, bottom: 30),
+      padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
       child: Consumer<RelationListProvider>(
         builder: (context, value, child) => FutureBuilder(
           future: value.fetchCategories(),
@@ -264,16 +278,25 @@ class HomeTab extends StatelessWidget {
     );
   }
 
-  GradientAppBar createAppbar(String name) {
+  GradientAppBar createAppbar(String name, BuildContext context) {
     return GradientAppBar(
       brightness: Brightness.light,
       elevation: 1,
       centerTitle: false,
       titleSpacing: 0.0,
-      actions:[Icon(
-          Icons.more_vert,
-          color:  Color(0xff88674d),
-          size: 36.0)],
+      actions: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AboutBeans(),
+              ),
+            );
+          },
+          child: Icon(Icons.more_vert, color: Color(0xff88674d), size: 36.0),
+        )
+      ],
       title: Container(
         margin: EdgeInsets.only(left: 16),
         child: Text(
@@ -281,7 +304,6 @@ class HomeTab extends StatelessWidget {
           style: Styles.headingPurple,
         ),
       ),
-
       gradient: GradientApp.gradientAppbar,
       automaticallyImplyLeading: false,
     );
@@ -292,7 +314,7 @@ class HomeTab extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 27),
+          padding: EdgeInsets.only(top: 27, bottom: 30),
           child: RichText(
             text: TextSpan(
               children: [
@@ -303,28 +325,6 @@ class HomeTab extends StatelessWidget {
                 TextSpan(
                   text: "NGÀY ${Utils.getCurrentDate()}",
                   style: Styles.dateStyle,
-                ),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 9, bottom: 43),
-          child: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              style: Styles.titleGrey,
-              children: [
-                TextSpan(
-                    text:
-                        'Mối tương quan nào khiến $userName băn khoăn hay hạnh phúc nhất hôm nay? '),
-                WidgetSpan(
-                  child: Image(
-                    image: AssetImage(R.tooltip),
-                    height: 28,
-                    width: 28,
-                  ),
                 ),
               ],
             ),
