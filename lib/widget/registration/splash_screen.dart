@@ -48,74 +48,12 @@ class _SplashScreenState extends State<SplashScreen>
       body: Container(
           color: Colors.white,
           child: Center(
-            child: Lottie.asset(R.splash),
-          )
-          /*  Column(
-          children: <Widget>[
-            Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: 200, bottom: 0, left: 0, right: 0),
-                    child: SvgPicture.asset(
-                      R.ic_logo,
-                      height: 122,
-                    ),
-                  ),
-
-                ],
-              ),
+            child: Lottie.asset(
+              R.splash,
+              repeat: false,
+              reverse: true,
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: GestureDetector(
-                onTap: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 0,top:149, left: 48, right: 48),
-                  child:  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'THE BEANS\n ',
-                          style: Styles.headerSplashStyle,
-                        ),
-                        TextSpan(
-                          text: 'Hộp Đậu Xét Mình',
-                          style: Styles.bodyPurple,
-                        ),
-
-
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: GestureDetector(
-                onTap: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(top: 33, left: 48, right: 48),
-                  child: Text(
-                    'Skip',
-                    style: Styles.bodyGreyUnderline,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),*/
-          ),
+          )),
     );
   }
 }

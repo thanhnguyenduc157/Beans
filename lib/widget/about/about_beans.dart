@@ -3,6 +3,7 @@ import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/utils/utils.dart';
 import 'package:beans/value/gradient.dart';
 import 'package:beans/value/styles.dart';
+import 'package:beans/widget/about/setting_screen.dart';
 import 'package:beans/widget/custom/expansion_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -44,7 +45,8 @@ class AboutBeans extends StatelessWidget {
 Widget createListViewAbout(BuildContext context) {
   List<About> data = [];
   List<AboutDes> listDes = [];
-  listDes.add(new AboutDes("Giới thiệu về Beans"));
+  listDes.add(new AboutDes(
+      "Beans app là một ứng dụng di động dành cho người công giáo, người kitô hữu và những ai mong muốn hiểu và hoà giải với chính mình, với mọi người xung quanh và với Thiên Chúa.\n\nBeans app có gì đặc biệt?\n\n1. Vào cuối ngày, bạn có thể ghi nhận những điều khiến mình hạnh phúc hay trăn trở như viết nhật kí nhưng chỉ tốn 2-5 phút.\n\n2. Những điều khiến bạn trăn trở mỗi ngày sẽ được ghi nhận lại thành một danh sách tiện dụng (bản xét mình) để bạn dễ dàng xưng tội.\n\n3. Beans app sẽ giữ thông tin của bạn hoà toàn bí mật và bạn có thể xoá bất cứ lúc nào.\n\n4. Với THỬ THÁCH 24H, bạn có thể thử thách bản thân làm những việc tốt đẹp ngẫu nhiên cho mình hoặc cho người khác.\n\nBeans app giúp người dùng chuyển đổi những việc tốt hoặc việc chưa tốt thành những hạt đậu số. Với những hạt đậu này, bạn có thể tạo cho riêng mình một khu vườn bí mật, một nơi để sống nội tâm hơn."));
   data.add(About("Giới thiệu về Beans", listDes, true, R.ic_down_arrow));
   data.add(About(
       "Chia sẻ Beans với người thân", new List<AboutDes>(), false, R.ic_share));
@@ -90,7 +92,16 @@ class AboutItem extends StatelessWidget {
 
   Widget createParentNoChild(About root, int position, BuildContext context) {
     return GestureDetector(
-        onTap: () {},
+        onTap: () {
+          if (about.title == "Cài đặt & Bảo mật") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SettingScreen(),
+              ),
+            );
+          }
+        },
         child: ListTile(
           trailing: SvgPicture.asset(root.icon, color: Color(0xff88674d)),
           title: Row(
@@ -137,7 +148,7 @@ class AboutItem extends StatelessWidget {
   Widget createChildItem(AboutDes root, int position, BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: ListTile(title: Text(root.description, style: Styles.titlePurple)),
+      child: ListTile(title: Text(root.description, style: Styles.titleGrey)),
     );
   }
 

@@ -228,10 +228,11 @@ class DatabaseProvider {
         current_challenge_log_id INTEGER, 
         name TEXT,
         pin TEXT,
-        age_range TEXT,
+        bod TEXT,
         green_count INTEGER,
         black_count INTEGER,
-        time_left_for_challenge TEXT 
+        time_left_for_challenge TEXT,
+        email TEXT
         );
     ''';
   }

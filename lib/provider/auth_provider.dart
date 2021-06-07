@@ -15,6 +15,8 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  String get dob => _user.bod;
+
   String get name => _user.name;
   String get pin => _user.pin;
 

@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:beans/generated/r.dart';
 import 'package:beans/model/relational_category.dart';
 import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/provider/challenge_provider.dart';
@@ -29,11 +28,11 @@ class HomeTab extends StatelessWidget {
         child: Column(
           children: [
             titleTop(userName),
+            godWordText(),
             Provider(
               create: (context) => RelationListProvider(),
               child: getListRelation(),
             ),
-            divider(),
             ChangeNotifierProvider(
               create: (context) => ChallengeProvider(),
               child: ChallengeView(),
@@ -46,19 +45,25 @@ class HomeTab extends StatelessWidget {
     );
   }
 
-  Widget divider() {
-    return Opacity(
-      opacity: 0.3,
-      child: Container(
-          height: 1,
-          decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xff979797), width: 1))),
+  Widget godWordText() {
+    return Padding(
+      padding: EdgeInsets.only(top: 0, bottom: 30),
+      child: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: '“Bình an cho anh em”(Lc 24, 36)',
+              style: Styles.headingPurple,
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   Widget getListRelation() {
     return Padding(
-      padding: const EdgeInsets.only(left: 0, right: 0, bottom: 30),
+      padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
       child: Consumer<RelationListProvider>(
         builder: (context, value, child) => FutureBuilder(
           future: value.fetchCategories(),
@@ -156,7 +161,7 @@ class HomeTab extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 27),
+          padding: EdgeInsets.only(top: 27, bottom: 30),
           child: RichText(
             text: TextSpan(
               children: [
@@ -167,28 +172,6 @@ class HomeTab extends StatelessWidget {
                 TextSpan(
                   text: "NGÀY ${Utils.getCurrentDate()}",
                   style: Styles.dateStyle,
-                ),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 9, bottom: 43),
-          child: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              style: Styles.titleGrey,
-              children: [
-                TextSpan(
-                    text:
-                        'Mối tương quan nào khiến $userName băn khoăn hay hạnh phúc nhất hôm nay? '),
-                WidgetSpan(
-                  child: Image(
-                    image: AssetImage(R.tooltip),
-                    height: 28,
-                    width: 28,
-                  ),
                 ),
               ],
             ),
