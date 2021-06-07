@@ -1,5 +1,9 @@
+import 'package:beans/dao/relational_item_dao.dart';
+import 'package:beans/model/relational_item.dart';
 import 'package:beans/model/relational_subcategory_detail.dart';
 import 'package:flutter/material.dart';
+
+import 'auth_provider.dart';
 
 class RelationDetailProvider with ChangeNotifier {
   // Public properties
@@ -27,6 +31,8 @@ class RelationDetailProvider with ChangeNotifier {
   // Private properties
   final int _categoryId;
   final RelationalSubcategoryDetail _detail;
+  final AuthProvider _authProvider;
+  final RelationalItemDao _relationalItemDao = RelationalItemDao();
 
   int get _gratefulCount {
     final totalGratefulReason = _selectedGratefulReasonIdx?.length ?? 0;
@@ -55,6 +61,7 @@ class RelationDetailProvider with ChangeNotifier {
     this.categoryTitle,
     this.subcateTitle,
     this._detail,
+    this._authProvider,
   ) {
     _fetchData();
   }
@@ -78,9 +85,62 @@ class RelationDetailProvider with ChangeNotifier {
   }
 
   submitRelation() async {
-    await Future.delayed(Duration(seconds: 1));
-    // Create other reasons if have
-    // Create reason item
+    List<RelationalItem> items = [];
+
+    _gratefulReasons.forEach((reason) {
+      final item = RelationalItem(
+        createdAt: DateTime.now(),
+        relationalCategoryId: _categoryId,
+        relationalSubcategoryId: _detail.relationalSubcategoryId,
+        relationalSubcategoryDetailId: _detail.id,
+        isGrateful: true,
+        isOther: false,
+        name: reason.title,
+      );
+      items.add(item);
+    });
+
+    _badReasons.forEach((reason) {
+      final item = RelationalItem(
+        createdAt: DateTime.now(),
+        relationalCategoryId: _categoryId,
+        relationalSubcategoryId: _detail.relationalSubcategoryId,
+        relationalSubcategoryDetailId: _detail.id,
+        isGrateful: false,
+        isOther: false,
+        name: reason.title,
+      );
+      items.add(item);
+    });
+
+    if (_otherGratefulReason?.isSelected == true) {
+      final item = RelationalItem(
+        createdAt: DateTime.now(),
+        relationalCategoryId: _categoryId,
+        relationalSubcategoryId: _detail.relationalSubcategoryId,
+        relationalSubcategoryDetailId: _detail.id,
+        isGrateful: true,
+        isOther: true,
+        name: _otherGratefulReason.title,
+      );
+      items.add(item);
+    }
+
+    if (_otherUngratefulReason?.isSelected == true) {
+      final item = RelationalItem(
+        createdAt: DateTime.now(),
+        relationalCategoryId: _categoryId,
+        relationalSubcategoryId: _detail.relationalSubcategoryId,
+        relationalSubcategoryDetailId: _detail.id,
+        isGrateful: false,
+        isOther: true,
+        name: _otherUngratefulReason.title,
+      );
+      items.add(item);
+    }
+
+    await _relationalItemDao.createBeans(items);
+    await _authProvider.updateBean(_gratefulCount, _ungratefulCount);
   }
 
   _updateOtherGratefulReason(String title, bool isSelected) {
