@@ -2,6 +2,7 @@ import 'package:beans/generated/r.dart';
 import 'package:beans/model/relational_category.dart';
 import 'package:beans/model/relational_subcategory_detail.dart';
 import 'package:beans/provider/auth_provider.dart';
+import 'package:beans/provider/relation_detail_other_provider.dart';
 import 'package:beans/provider/relation_detail_provider.dart';
 import 'package:beans/value/styles.dart';
 import 'package:beans/widget/custom/expansion_tile.dart';
@@ -44,6 +45,7 @@ Widget createListViewCategory(
     subcat.details.forEach((detail) {
       var detailEntry = Entry(detail.description, "");
       detailEntry.catID = subcat.relationalCategoryId;
+      detailEntry.subcatID = subcat.id;
       detailEntry.catTitle = category.name;
       detailEntry.detail = detail;
       detailEntry.description = subcat.description;
@@ -112,6 +114,7 @@ class Entry {
   List<Entry> children;
   bool isOther;
   int catID;
+  int subcatID;
   String catTitle;
   String subcateTitle;
   RelationalSubcategoryDetail detail;
@@ -140,6 +143,7 @@ class EntryItem extends StatelessWidget {
                 root.catTitle,
                 root.subcateTitle,
                 root.detail,
+                Provider.of<AuthProvider>(context, listen: false),
               ),
               child: RelationDetail(),
             ),
@@ -158,11 +162,17 @@ class EntryItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => RelationDetailOther(
-                    categoryId: root.catID,
-                    categoryTitle: root.catTitle,
-                    subcateTitle: root.subcateTitle,
-                  )),
+            builder: (context) => ChangeNotifierProvider(
+              create: (context) => RelationDetailOtherProvider(
+                root.catID,
+                root.subcatID,
+                root.catTitle,
+                root.subcateTitle,
+                Provider.of<AuthProvider>(context, listen: false),
+              ),
+              child: RelationDetailOther(),
+            ),
+          ),
         );
       },
       child: ListTile(

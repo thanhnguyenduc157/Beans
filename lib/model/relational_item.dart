@@ -35,13 +35,15 @@ class RelationalItem {
       'created_at': this.createdAt.toIso8601String(),
       'relational_category_id': this.relationalCategoryId,
       'relational_subcategory_id': this.relationalSubcategoryId,
-      'relational_subcategory_detail_id': this.relationalSubcategoryDetailId,
       'is_grateful': this.isGrateful ? 1 : 0,
       'is_other': this.isOther ? 1 : 0,
       'name': this.name,
     };
 
     if (id != null) map['id'] = id;
+    if (relationalSubcategoryDetailId != null)
+      map['relational_subcategory_detail_id'] =
+          this.relationalSubcategoryDetailId;
 
     return map;
   }
