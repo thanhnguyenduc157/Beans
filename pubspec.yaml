@@ -77,6 +77,7 @@ flutter:
     - assets/ic_logo.svg
     - assets/ic_more.svg
     - assets/ic_congratulation.svg
+    - assets/ic_congratulation2.svg
     - assets/ic_close_gradient.png
     - assets/ic_expired.png
     - assets/ic_community.svg
@@ -84,6 +85,8 @@ flutter:
     - assets/ic_god_vs_me.svg
     - assets/ic_god_word.svg
     - assets/ic_religion.svg
+    - assets/splash.gif
+    - assets/challengeviewbottom.png
     - assets/ic_milkshake.svg
     - assets/ic_settings.svg
     - assets/ic_contact.svg
