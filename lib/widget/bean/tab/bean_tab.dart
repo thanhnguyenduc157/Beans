@@ -33,16 +33,19 @@ class _BeanTabState extends State<BeanTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-            controller: _scrollController,
-            child: ChangeNotifierProvider<BeanProvider>(
-                create: (context) => BeanProvider(),
-                child: Center(
-                  child: Column(
-                    children: [whiteBeanView(), blackBeanView()],
-                  ),
-                ))));
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        child: ChangeNotifierProvider<BeanProvider>(
+          create: (context) => BeanProvider(),
+          child: Center(
+            child: Column(
+              children: [whiteBeanView(), blackBeanView()],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget blackBeanView() {
@@ -87,7 +90,7 @@ class _BeanTabState extends State<BeanTab> {
                         "%",
                     labelStyle: Theme.of(context)
                         .textTheme
-                        .title
+                        .headline6
                         .merge(new TextStyle(color: Color(0xff7b4d0a))),
                   ));
             }),
