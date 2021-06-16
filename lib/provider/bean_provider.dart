@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class BeanProvider with ChangeNotifier {
   Target get target => _target;
   Target _target;
+
   final _targetDao = TargetDao();
 
   BeanProvider() {

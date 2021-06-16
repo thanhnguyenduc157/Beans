@@ -26,6 +26,7 @@ class AcceptedChallengeProvider with ChangeNotifier {
   int _secondsLeft = 0;
   String get secondsLeft => Utils.getNumberAddZero(_secondsLeft);
 
+
   String get name => _currentChallenge?.name ?? '';
 
   Challenge _currentChallenge;
@@ -48,9 +49,9 @@ class AcceptedChallengeProvider with ChangeNotifier {
   _fetchChallenge() async {
     _user = await _userDao.getOrCreate();
     final currentChallengeLog =
-        await _challengeLogDao.get(_user.currentChallengeLogId);
+      await _challengeLogDao.get(_user.currentChallengeLogId);
     _currentChallenge =
-        await _challengeDao.get(currentChallengeLog.challengeId);
+      await _challengeDao.get(currentChallengeLog.challengeId);
 
     _countdown(currentChallengeLog.dueAt);
   }

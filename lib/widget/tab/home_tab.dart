@@ -1,6 +1,4 @@
 import 'dart:ui';
-import 'package:flutter/material.dart';
-import 'package:beans/generated/r.dart';
 import 'package:beans/model/relational_category.dart';
 import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/provider/challenge_provider.dart';
@@ -12,6 +10,7 @@ import 'package:beans/widget/about/about_beans.dart';
 import 'package:beans/widget/challenge/challenge_view.dart';
 import 'package:beans/widget/relation/relation_list.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +25,7 @@ class HomeTab extends StatelessWidget {
       appBar: createAppbar(userName, context),
       body: SingleChildScrollView(
         child: Container(
-          height:MediaQuery.of(context).size.height*0.80,
+         height:MediaQuery.of(context).size.height*0.80,
         child: Column(
           children: [
             new Expanded(
@@ -39,7 +38,6 @@ class HomeTab extends StatelessWidget {
                     create: (context) => RelationListProvider(),
                     child: getListRelation(),
                   ),
-                  divider(),
                 ],
               ),
             ),
@@ -47,9 +45,9 @@ class HomeTab extends StatelessWidget {
               flex:2,
               child:
               Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Row(
                     children: <Widget>[
@@ -64,56 +62,56 @@ class HomeTab extends StatelessWidget {
                           ),
                         ),
                         child: new IconButton(
-                            icon: const Icon(Icons.keyboard_arrow_up),
-                            iconSize:35.0,
-                            color: const Color(0xFFffffff),
-                            padding: const EdgeInsets.all(0.0),
-                            alignment: Alignment.center,
-                            onPressed: (){
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (BuildContext context){
-                                    return Container(
-                                      height: 350,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          new Container(
-                                            color: Colors.orangeAccent,
-                                            width:MediaQuery.of(context).size.width,
-                                            height:3,
-                                          ),
-                                          new Container(
-                                            padding: const EdgeInsets.all(0.0),
-                                            height: 30,
-                                            width: 60,
-                                            decoration: new BoxDecoration(
-                                              color:Colors.orangeAccent,
-                                              borderRadius: new BorderRadius.only(
-                                                bottomRight: const Radius.circular(50),
-                                                bottomLeft: const Radius.circular(50),
-                                              )
-                                            ),
-                                            child: new IconButton(
-                                                icon: Icon(Icons.keyboard_arrow_down),
-                                                iconSize:35.0,
-                                                color: const Color(0XFFffffff),
-                                                padding: const EdgeInsets.all(0.0),
-                                                alignment: Alignment.center,
-                                                onPressed: () =>Navigator.pop(context),
-                                            ),
-                                          ),
-                                          ChangeNotifierProvider(
-                                            create:(context) => ChallengeProvider(),
-                                            child: ChallengeView(),
-                                          ),
-                                        ],
+                          icon: const Icon(Icons.keyboard_arrow_up),
+                          iconSize:35.0,
+                          color: const Color(0xFFffffff),
+                          padding: const EdgeInsets.all(0.0),
+                          alignment: Alignment.center,
+                          onPressed: (){
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context){
+                                return Container(
+                                  height: 350,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      new Container(
+                                        color: Colors.orangeAccent,
+                                        width:MediaQuery.of(context).size.width,
+                                        height:3,
                                       ),
-                                    );
-                                  },
-                              );
-                            },
+                                      new Container(
+                                        padding: const EdgeInsets.all(0.0),
+                                        height: 30,
+                                        width: 60,
+                                        decoration: new BoxDecoration(
+                                            color:Colors.orangeAccent,
+                                            borderRadius: new BorderRadius.only(
+                                              bottomRight: const Radius.circular(50),
+                                              bottomLeft: const Radius.circular(50),
+                                            )
+                                        ),
+                                        child: new IconButton(
+                                          icon: Icon(Icons.keyboard_arrow_down),
+                                          iconSize:35.0,
+                                          color: const Color(0XFFffffff),
+                                          padding: const EdgeInsets.all(0.0),
+                                          alignment: Alignment.center,
+                                          onPressed: () =>Navigator.pop(context),
+                                        ),
+                                      ),
+                                      ChangeNotifierProvider(
+                                        create:(context) => ChallengeProvider(),
+                                        child: ChallengeView(),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -123,64 +121,27 @@ class HomeTab extends StatelessWidget {
                     width:MediaQuery.of(context).size.width,
                     height:3,
                   ),
-                 new InkWell(
-                    onTap: (){
-                      return Container(
-                      height: 350,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          new Container(
-                            color: Colors.orangeAccent,
-                            width:MediaQuery.of(context).size.width,
-                            height:3,
-                          ),
-                          new Container(
-                            padding: const EdgeInsets.all(0.0),
-                            height: 30,
-                            width: 60,
-                            decoration: new BoxDecoration(
-                                color:Colors.orangeAccent,
-                                borderRadius: new BorderRadius.only(
-                                  bottomRight: const Radius.circular(50),
-                                  bottomLeft: const Radius.circular(50),
-                                )
-                            ),
-                            child: new IconButton(
-                              icon: Icon(Icons.keyboard_arrow_down),
-                              iconSize:35.0,
-                              color: const Color(0XFFffffff),
-                              padding: const EdgeInsets.all(0.0),
-                              alignment: Alignment.center,
-                              onPressed: () =>Navigator.pop(context),
-                            ),
-                          ),
-                          ChangeNotifierProvider(
-                            create:(context) => ChallengeProvider(),
-                            child: ChallengeView(),
-                          ),
-                        ],
+                  Column(
+                    children:<Widget>[
+                      new Image.asset(
+                        'assets/challengeviewbottom.png',
+                        fit:BoxFit.fill,
+                        width: MediaQuery.of(context).size.width,
                       ),
-                    );
-                      },
-                    child: new Image.asset(
-                    'assets/challengeviewbottom.png',
-                    fit:BoxFit.fill,
-                    width: MediaQuery.of(context).size.width,
+                    ],
                   ),
-                 ),
                 ],
               ),
             ),
           ],
         ),
       ),
-    ),
+      ),
       // TODO: Not implemnet yet
       // endDrawer: SlidingMenu(),
     );
   }
+
   Widget titleChallenge() => RichText(
     textAlign: TextAlign.center,
     text: TextSpan(
@@ -191,13 +152,6 @@ class HomeTab extends StatelessWidget {
     ),
   );
 
-  Widget divider() {
-    return Opacity(
-      opacity: 0.3,
-      child: Container(
-          height: 1,
-          decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xff979797), width: 1))),
   Widget godWordText() {
     return Padding(
       padding: EdgeInsets.only(top: 0, bottom: 30),

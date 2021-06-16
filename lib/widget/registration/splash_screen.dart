@@ -1,9 +1,10 @@
 import 'dart:async';
+
 import 'package:beans/generated/r.dart';
 import 'package:beans/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gifimage/flutter_gifimage.dart';
 import 'package:lottie/lottie.dart';
+
 import '../../main.dart';
 
 class SplashScreen extends StatefulWidget {

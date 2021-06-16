@@ -1,11 +1,10 @@
 import 'package:beans/provider/accepted_challenge_provider.dart';
-import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/value/gradient.dart';
 import 'package:beans/value/styles.dart';
-
 import 'package:flutter/material.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:beans/provider/auth_provider.dart';
 
 class AcceptedChallenge extends StatelessWidget {
   @override
@@ -44,47 +43,47 @@ class AcceptedChallenge extends StatelessWidget {
       );
 
   Widget countdownText() => Consumer<AcceptedChallengeProvider>(
-        builder: (context, challenge, child) => Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    builder: (context, challenge, child) => Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
           children: [
-            Column(
-              children: [
-                Text(
-                  '${challenge.hourLeft}',
-                  style: Styles.textStyleLarge,
-                ),
-                Text(
-                  'GIỜ',
-                  style: Styles.textStyleBold,
-                )
-              ],
+            Text(
+              '${challenge.hourLeft}',
+              style: Styles.textStyleLarge,
             ),
-            Column(
-              children: [
-                Text(
-                  challenge.blink ? ' : ' : '   ',
-                  style: Styles.textStyleLarge,
-                ),
-                Text(
-                  ' ',
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Text(
-                  '${challenge.minutesLeft}',
-                  style: Styles.textStyleLarge,
-                ),
-                Text(
-                  'PHÚT',
-                  style: Styles.textStyleBold,
-                )
-              ],
+            Text(
+              'GIỜ',
+              style: Styles.textStyleBold,
             )
           ],
         ),
-      );
+        Column(
+          children: [
+            Text(
+              challenge.blink ? ' : ' : '   ',
+              style: Styles.textStyleLarge,
+            ),
+            Text(
+              ' ',
+            ),
+          ],
+        ),
+        Column(
+          children: [
+            Text(
+              '${challenge.minutesLeft}',
+              style: Styles.textStyleLarge,
+            ),
+            Text(
+              'PHÚT',
+              style: Styles.textStyleBold,
+            )
+          ],
+        )
+      ],
+    ),
+  );
 
   Widget acceptedChallengeText() => Consumer<AcceptedChallengeProvider>(
         builder: (context, challenge, child) => Text(
@@ -97,6 +96,7 @@ class AcceptedChallenge extends StatelessWidget {
   Widget buttonFinish(Function finishChallenge) => GradientButton(
         increaseWidthBy: 120,
         increaseHeightBy: 9.0,
+        elevation: 0,
         callback: finishChallenge,
         gradient: GradientApp.gradientButton,
         child: Text('Hoàn thành', style: Styles.buttonText),

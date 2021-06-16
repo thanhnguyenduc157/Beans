@@ -25,7 +25,7 @@ class TargetDao {
   }
 
   Future<Target> getOrCreate() async {
-    final db = await dbProvider.database;
+   final db = await dbProvider.database;
 
     final result = await db.query(
       targetsTable,
@@ -34,7 +34,7 @@ class TargetDao {
 
     if (result.isEmpty) {
       var initTarget = Target(id: 1, greenCount: 30, blackCount: 30);
-      await create(initTarget);
+      await (initTarget);
       return initTarget;
     }
 

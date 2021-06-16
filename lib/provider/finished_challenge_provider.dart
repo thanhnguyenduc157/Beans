@@ -16,12 +16,12 @@ class FinishedChallengeProvider with ChangeNotifier {
   int _secondsLeft = 00;
   String get secondsLeft => Utils.getNumberAddZero(_secondsLeft);
 
-
   int _minutesLeft = 00;
   String get minutesLeft => Utils.getNumberAddZero(_minutesLeft);
 
   int _hoursLeft = 00;
-  String get hoursLeft => Utils.getNumberAddZero(_hoursLeft);
+  String get hoursLeft => _hoursLeft.toString();
+
   String get name => _currentChallenge?.name ?? '';
 
   Challenge _currentChallenge;
@@ -45,13 +45,13 @@ class FinishedChallengeProvider with ChangeNotifier {
     _user = await _userDao.getOrCreate();
     final currentChallengeLog = await _challengeLogDao.getLatest();
     _currentChallenge =
-    await _challengeDao.get(currentChallengeLog.challengeId);
+        await _challengeDao.get(currentChallengeLog.challengeId);
 
     _countdown(_user.timeLeftForChallenge);
   }
 
   _updateCountDownTime(DiffDate time) {
-    _hoursLeft   = time.hours;
+    _hoursLeft = time.hours;
     _minutesLeft = time.min;
     _secondsLeft = time.sec;
     notifyListeners();

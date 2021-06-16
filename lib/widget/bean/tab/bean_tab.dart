@@ -19,10 +19,10 @@ class BeanTab extends StatefulWidget {
 
 class _BeanTabState extends State<BeanTab> {
   final GlobalKey<AnimatedCircularChartState> _chartKey =
-      new GlobalKey<AnimatedCircularChartState>();
+  new GlobalKey<AnimatedCircularChartState>();
 
   final GlobalKey<AnimatedCircularChartState> _chartKey2 =
-      new GlobalKey<AnimatedCircularChartState>();
+  new GlobalKey<AnimatedCircularChartState>();
   final _chartSize = const Size(200.0, 200.0);
 
   Color labelColor = Color(0xffFFC269);
@@ -56,7 +56,7 @@ class _BeanTabState extends State<BeanTab> {
           children: [
             Padding(
               padding:
-                  EdgeInsets.only(top: 20, left: 59, right: 59, bottom: 14),
+              EdgeInsets.only(top: 20, left: 59, right: 59, bottom: 14),
               child: Text('HỦ ĐẬU TRĂN TRỞ',
                   style: Styles.headingExtraPurple,
                   textAlign: TextAlign.center),
@@ -64,7 +64,7 @@ class _BeanTabState extends State<BeanTab> {
             Padding(
               padding: EdgeInsets.only(left: 48, right: 48),
               child: Text(
-                  "Thành đang có " +
+                  "Bạn đang có " +
                       authProvider.blackCount.toString() +
                       " hạt đậu trăn trở.\ngần chạm mức mục tiêu tối thiểu",
                   style: Styles.bodyGrey,
@@ -80,9 +80,9 @@ class _BeanTabState extends State<BeanTab> {
                 edgeStyle: SegmentEdgeStyle.round,
                 percentageValues: true,
                 holeLabel: Utils.getTargetBlackBeanComplete(
-                      beanProvider.target?.blackCount ?? 0,
-                      authProvider.blackCount,
-                    ).round().toString() +
+                  beanProvider.target?.blackCount ?? 0,
+                  authProvider.blackCount,
+                ).round().toString() +
                     "%",
                 labelStyle: Theme.of(context)
                     .textTheme
@@ -137,15 +137,16 @@ class _BeanTabState extends State<BeanTab> {
             key: _chartKey,
             size: _chartSize,
             initialChartData: Utils.getChartDataWhiteBean(
-                beanProvider.target?.greenCount ?? 0, authProvider.greenCount),
+                beanProvider.target?.greenCount ?? 0,
+                authProvider.greenCount),
             chartType: CircularChartType.Radial,
             edgeStyle: SegmentEdgeStyle.round,
             percentageValues: true,
             holeLabel: Utils.getTargetWhiteBeanComplete(
-                        beanProvider.target?.greenCount ?? 0,
-                        authProvider.greenCount)
-                    .round()
-                    .toString() +
+                beanProvider.target?.greenCount ?? 0,
+                authProvider.greenCount)
+                .round()
+                .toString() +
                 "%",
             labelStyle: Theme.of(context)
                 .textTheme
@@ -159,8 +160,8 @@ class _BeanTabState extends State<BeanTab> {
               child: Text(
                   "Hoàn thành " +
                       Utils.getTargetWhiteBeanComplete(
-                              beanProvider.target?.greenCount ?? 0,
-                              authProvider.greenCount)
+                          beanProvider.target?.greenCount ?? 0,
+                          authProvider.greenCount)
                           .round()
                           .toString() +
                       "% mục tiêu",
@@ -206,14 +207,14 @@ class _BeanTabState extends State<BeanTab> {
                       children: [
                         Padding(
                             padding:
-                                EdgeInsets.only(bottom: 0, left: 48, right: 48),
+                            EdgeInsets.only(bottom: 0, left: 48, right: 48),
                             child: Text(
                               'Xem hủ trăn trở',
                               style: Styles.bodyGreyUnderline,
                             )),
                         Padding(
                             padding:
-                                EdgeInsets.only(bottom: 8, left: 48, right: 48),
+                            EdgeInsets.only(bottom: 8, left: 48, right: 48),
                             child: Icon(
                               Icons.keyboard_arrow_down,
                               color: Colors.grey[700],
@@ -226,14 +227,14 @@ class _BeanTabState extends State<BeanTab> {
                       children: [
                         Padding(
                             padding:
-                                EdgeInsets.only(bottom: 8, left: 48, right: 48),
+                            EdgeInsets.only(bottom: 8, left: 48, right: 48),
                             child: Icon(
                               Icons.keyboard_arrow_up,
                               color: Colors.grey[700],
                             )),
                         Padding(
                             padding:
-                                EdgeInsets.only(bottom: 0, left: 48, right: 48),
+                            EdgeInsets.only(bottom: 0, left: 48, right: 48),
                             child: Text(
                               'Trở về hủ biết ơn',
                               style: Styles.bodyGreyUnderline,
