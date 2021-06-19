@@ -67,7 +67,6 @@ class AuthProvider with ChangeNotifier {
       state = ViewState.register;
       return;
     }
-
     state = ViewState.home;
   }
 }

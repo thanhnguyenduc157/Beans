@@ -8,12 +8,18 @@ class BeanProvider with ChangeNotifier {
 
   final _targetDao = TargetDao();
 
+  int get greenTagetCount => target.greenCount;
+
+  int get blackTargetCount => target.blackCount;
+
   BeanProvider() {
     getTarget();
   }
 
   getTarget() async {
     _target = await _targetDao.getOrCreate();
+    target.greenCount = _target.greenCount;
+    target.blackCount = _target.blackCount;
     notifyListeners();
   }
 }

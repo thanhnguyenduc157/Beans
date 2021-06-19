@@ -75,14 +75,16 @@ class _BeanTabState extends State<BeanTab> {
               child: AnimatedCircularChart(
                 key: _chartKey2,
                 size: _chartSize,
-                initialChartData: Utils.getChartDataBlackBean(0, 0),
+                initialChartData: Utils.getChartDataBlackBean(
+                    beanProvider.blackTargetCount ?? 0,
+                    authProvider.blackCount),
                 chartType: CircularChartType.Radial,
                 edgeStyle: SegmentEdgeStyle.round,
                 percentageValues: true,
                 holeLabel: Utils.getTargetBlackBeanComplete(
-                  beanProvider.target?.blackCount ?? 0,
-                  authProvider.blackCount,
-                ).round().toString() +
+                      beanProvider.blackTargetCount ?? 0,
+                      authProvider.blackCount,
+                    ).round().toString() +
                     "%",
                 labelStyle: Theme.of(context)
                     .textTheme
@@ -137,14 +139,13 @@ class _BeanTabState extends State<BeanTab> {
             key: _chartKey,
             size: _chartSize,
             initialChartData: Utils.getChartDataWhiteBean(
-                beanProvider.target?.greenCount ?? 0,
-                authProvider.greenCount),
+                beanProvider.greenTagetCount ?? 0, authProvider.greenCount),
             chartType: CircularChartType.Radial,
             edgeStyle: SegmentEdgeStyle.round,
             percentageValues: true,
             holeLabel: Utils.getTargetWhiteBeanComplete(
-                beanProvider.target?.greenCount ?? 0,
-                authProvider.greenCount)
+                beanProvider.greenTagetCount ?? 0,
+                        authProvider.greenCount)
                 .round()
                 .toString() +
                 "%",
@@ -160,8 +161,8 @@ class _BeanTabState extends State<BeanTab> {
               child: Text(
                   "Hoàn thành " +
                       Utils.getTargetWhiteBeanComplete(
-                          beanProvider.target?.greenCount ?? 0,
-                          authProvider.greenCount)
+                          beanProvider.greenTagetCount ?? 0,
+                              authProvider.greenCount)
                           .round()
                           .toString() +
                       "% mục tiêu",
