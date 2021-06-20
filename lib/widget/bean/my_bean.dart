@@ -1,8 +1,10 @@
+import 'package:beans/provider/bean_provider.dart';
 import 'package:beans/value/styles.dart';
 import 'package:beans/widget/bean/tab/bean_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:beans/provider/bean_provider.dart';
 import 'package:provider/provider.dart';
+
+import 'inprogress/in_progress.dart';
 
 class MyBean extends StatelessWidget {
   @override
@@ -14,8 +16,8 @@ class MyBean extends StatelessWidget {
             backgroundColor: Colors.white,
             body: Column(
               children: [
-              Container(
-                padding: EdgeInsets.only(top: 40),
+                Container(
+                  padding: EdgeInsets.only(top: 40),
                   color: Colors.white,
                   child: TabBar(
                     indicatorColor: Color(0xff88674d),
@@ -31,50 +33,44 @@ class MyBean extends StatelessWidget {
                     ],
                   ),
 
-            ),
-              Opacity(
-              opacity: 0.2701590401785715,
-              child: Container(
-                  height: 1,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: const Color(0xff979797), width: 1))),
-            ),
-              Expanded(
-              flex: 3,
-              child: TabBarView(
-                children: [
-                  ChangeNotifierProvider<BeanProvider>(
-                    create: (context) => BeanProvider(),
-                    child: BeanTab(),
-                  ),
-                  Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Đang xây dựng',
-                          style: Styles.optionStyle,
-                        ),
-                      )
+                ),
+                Opacity(
+                  opacity: 0.2701590401785715,
+                  child: Container(
+                      height: 1,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: const Color(0xff979797), width: 1))),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: TabBarView(
+                    children: [
+                      ChangeNotifierProvider<BeanProvider>(
+                        create: (context) => BeanProvider(),
+                        child: BeanTab(),
+                      ),
+                      Stack(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.center,
+                            child: Inprogress(),
+                          )
+                        ],
+                      ),
+                      Stack(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.center,
+                            child: Inprogress(),
+                          )
+                        ],
+                      ),
                     ],
                   ),
-                  Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Đang xây dựng',
-                          style: Styles.optionStyle,
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-        ],
-        )),
+                ),
+              ],
+            )),
       ),
     );
   }

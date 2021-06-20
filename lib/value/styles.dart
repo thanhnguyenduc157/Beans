@@ -29,6 +29,9 @@ class Styles {
   static TextStyle bodyPurple = GoogleFonts.montserrat(
       fontSize: 14, color: Color(0xff88674d), fontWeight: FontWeight.w400);
 
+  static TextStyle superPurple2 = GoogleFonts.montserrat(
+      fontSize: 25, color: Color(0xff88674d), fontWeight: FontWeight.w600);
+
   static TextStyle superPurple = GoogleFonts.montserrat(
       fontSize: 50, color: Color(0xff88674d), fontWeight: FontWeight.w600);
 

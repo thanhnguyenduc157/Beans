@@ -22,6 +22,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import 'generated/r.dart';
+import 'widget/bean/inprogress/in_progress.dart';
 
 void main() => runApp(MaterialApp(
       home: SplashScreen(),
@@ -83,9 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
       children: <Widget>[
         Align(
           alignment: Alignment.center,
-          child: Text(
-            'Đang xây dựng',
-            style: Styles.optionStyle,
+          child: Padding(
+            padding: EdgeInsets.only(top: 100),
+            child: Inprogress(),
           ),
         )
       ],

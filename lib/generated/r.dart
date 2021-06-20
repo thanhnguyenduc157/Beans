@@ -47,4 +47,5 @@ class R {
   static const String ic_down_arrow = "assets/ic_down_arrow.svg";
   static const String splash = "assets/splash.json";
   static const String ic_edit = "assets/ic_edit.svg";
+  static const String ic_inprogress = "assets/ic_inprogress.svg";
 }

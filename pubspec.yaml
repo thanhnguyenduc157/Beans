@@ -92,7 +92,7 @@ flutter:
     - assets/splash.json
     - assets/ic_edit.svg
     - assets/challengeviewbottom.png
-
+    - assets/ic_inprogress.svg
 flr:
   core_version: 3.1.0
   dartfmt_line_length: 80
