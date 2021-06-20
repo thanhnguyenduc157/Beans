@@ -9,7 +9,7 @@ class ConsfessionUsecase {
   Future<Map<String, Map<String, List<ConfessionItem>>>>
       getListConfession() async {
     var categories = await _categoryDao.getList();
-    var items = await _itemDao.getListRelationalItem();
+    var items = await _itemDao.getListRelationalItem(isGrateful: false);
 
     var list = items.map((item) {
       final categoryName = categories

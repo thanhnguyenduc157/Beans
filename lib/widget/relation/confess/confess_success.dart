@@ -1,9 +1,11 @@
 import 'package:beans/generated/r.dart';
+import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/value/gradient.dart';
 import 'package:beans/value/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
+import 'package:provider/provider.dart';
 
 import '../../../main.dart';
 
@@ -17,6 +19,7 @@ class ConfessSuccess extends StatefulWidget {
 class _ConfessSuccessState extends State<ConfessSuccess> {
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -57,7 +60,7 @@ class _ConfessSuccessState extends State<ConfessSuccess> {
                     style: Styles.headingGrey,
                   ),
                   TextSpan(
-                    text: 'Thành ',
+                    text: '${authProvider.name} ',
                     style: Styles.headingPurple,
                   ),
                   TextSpan(

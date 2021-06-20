@@ -1,6 +1,8 @@
 import 'package:beans/generated/r.dart';
 import 'package:beans/model/confession.dart';
+import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/provider/confess_provider.dart';
+import 'package:beans/utils/utils.dart';
 import 'package:beans/value/gradient.dart';
 import 'package:beans/value/styles.dart';
 import 'package:beans/widget/confess/done/confess_done.dart';
@@ -61,12 +63,16 @@ class _ConfessListState extends State<ConfessList> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
-                    padding: EdgeInsets.only(right: 15, bottom: 0),
+                  padding: EdgeInsets.only(right: 15, bottom: 0),
+                  child: GestureDetector(
+                    onTap: () => Utils.goToConfess(context),
                     child: SvgPicture.asset(
                       R.ic_plus,
                       width: 18,
                       height: 18,
-                    )),
+                    ),
+                  ),
+                ),
                 Padding(
                     padding: EdgeInsets.only(right: 19),
                     child: SvgPicture.asset(
@@ -102,7 +108,7 @@ class _ConfessListState extends State<ConfessList> {
     return Consumer<ConfessProvider>(
         builder: (context, confessProvider, child) {
       if (confessProvider.listConfess.isEmpty) {
-        return creatEmptyView();
+        return creatEmptyView(context);
       }
       return Padding(
         padding: EdgeInsets.only(left: 26, right: 26),
@@ -119,7 +125,8 @@ class _ConfessListState extends State<ConfessList> {
     });
   }
 
-  Widget creatEmptyView() {
+  Widget creatEmptyView(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Center(
       child: Padding(
         padding: EdgeInsets.only(left: 26, right: 26, top: 42, bottom: 26),
@@ -138,7 +145,8 @@ class _ConfessListState extends State<ConfessList> {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: 'Thành chưa có điều gì để xưng tội.\nHãy ',
+                    text:
+                        '${authProvider.name} chưa có điều gì để xưng tội.\nHãy ',
                     style: Styles.bodyGrey,
                   ),
                   TextSpan(

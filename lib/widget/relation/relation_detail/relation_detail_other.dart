@@ -70,12 +70,10 @@ class RelationDetailOther extends StatelessWidget {
     final provider =
         Provider.of<RelationDetailOtherProvider>(context, listen: false);
 
-    BuildContext dialogContext;
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        dialogContext = context;
         return Dialog(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -93,7 +91,7 @@ class RelationDetailOther extends StatelessWidget {
     );
 
     await provider.submitRelation();
-    Navigator.pop(dialogContext);
+    Navigator.of(context).pop();
     Utils.goToConfessSuccess(context);
   }
 

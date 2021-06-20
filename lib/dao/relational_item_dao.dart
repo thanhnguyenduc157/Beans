@@ -29,10 +29,15 @@ class RelationalItemDao {
     return RelationalItem.fromMap(result.first);
   }
 
-  Future<List<RelationalItem>> getListRelationalItem() async {
+  Future<List<RelationalItem>> getListRelationalItem({bool isGrateful}) async {
     final db = await dbProvider.database;
+    final isGratefulFilter = isGrateful ? 1 : 0;
     List<Map<String, dynamic>> result;
-    result = await db.query(relationalItemsTable);
+    result = await db.query(
+      relationalItemsTable,
+      where: 'is_grateful = ?',
+      whereArgs: [isGratefulFilter],
+    );
     List<RelationalItem> relationalItems = result.isNotEmpty
         ? result.map((item) => RelationalItem.fromMap(item)).toList()
         : [];

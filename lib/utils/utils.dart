@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:beans/utils/cacher.dart';
+import 'package:beans/widget/relation/relation_list.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
@@ -20,6 +22,14 @@ class Utils {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => ConfessSuccess()),
+    );
+  }
+
+  static void goToConfess(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => RelationList(categories: Cacher.categories)),
     );
   }
 

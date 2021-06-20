@@ -10,6 +10,8 @@ import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:provider/provider.dart';
 
 class RelationDetail extends StatelessWidget {
+  BuildContext dialogContext;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -193,12 +195,10 @@ class RelationDetail extends StatelessWidget {
     final provider =
         Provider.of<RelationDetailProvider>(context, listen: false);
 
-    BuildContext dialogContext;
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        dialogContext = context;
         return Dialog(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -216,7 +216,7 @@ class RelationDetail extends StatelessWidget {
     );
 
     await provider.submitRelation();
-    Navigator.pop(dialogContext);
+    Navigator.of(context, rootNavigator: true).pop();
     Utils.goToConfessSuccess(context);
   }
 

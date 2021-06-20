@@ -87,7 +87,8 @@ class RelationDetailProvider with ChangeNotifier {
   submitRelation() async {
     List<RelationalItem> items = [];
 
-    _gratefulReasons.forEach((reason) {
+    _selectedGratefulReasonIdx.forEach((idx) {
+      final reason = _gratefulReasons[idx];
       final item = RelationalItem(
         createdAt: DateTime.now(),
         relationalCategoryId: _categoryId,
@@ -100,7 +101,8 @@ class RelationDetailProvider with ChangeNotifier {
       items.add(item);
     });
 
-    _badReasons.forEach((reason) {
+    _selectedUngratefulReasonIdx.forEach((idx) {
+      final reason = _badReasons[idx];
       final item = RelationalItem(
         createdAt: DateTime.now(),
         relationalCategoryId: _categoryId,

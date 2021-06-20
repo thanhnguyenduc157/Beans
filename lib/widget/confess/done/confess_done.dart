@@ -1,7 +1,9 @@
 import 'package:beans/generated/r.dart';
+import 'package:beans/provider/auth_provider.dart';
 import 'package:beans/value/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../main.dart';
 
@@ -13,9 +15,9 @@ class ConfessDone extends StatefulWidget {
 }
 
 class _ConfessDoneState extends State<ConfessDone> {
-
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: createAppbar(),
@@ -26,7 +28,7 @@ class _ConfessDoneState extends State<ConfessDone> {
                 padding:
                     EdgeInsets.only(top: 29, left: 40, right: 40, bottom: 2),
                 child: Text(
-                  'Thành có cảm thấy người nhẹ đi 100kg sau khi xưng tội xong không?',
+                  '${authProvider.name} có cảm thấy người nhẹ đi 100kg sau khi xưng tội xong không?',
                   style: Styles.bodyGrey,
                   textAlign: TextAlign.center,
                 )),
@@ -44,14 +46,14 @@ class _ConfessDoneState extends State<ConfessDone> {
             ),
             Padding(
                 padding: EdgeInsets.only(bottom: 30, left: 40, right: 40),
-                child:
-                RichText(
+                child: RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     style: Styles.bodyGrey,
                     children: [
                       TextSpan(
-                          text: 'Bản xét mình của Thành vừa được xoá, bạn hãy làm việc đền tội trong 24 giờ và nhấn hoàn thành để nhận 2 đậu trắng nhé! '),
+                          text:
+                              'Bản xét mình của ${authProvider.name} vừa được xoá, bạn hãy làm việc đền tội trong 24 giờ và nhấn hoàn thành để nhận 2 đậu trắng nhé! '),
                       WidgetSpan(
                         child: Image(
                           image: AssetImage(R.tooltip),
@@ -61,8 +63,7 @@ class _ConfessDoneState extends State<ConfessDone> {
                       ),
                     ],
                   ),
-                )
-            )
+                ))
           ],
         ),
       ),
