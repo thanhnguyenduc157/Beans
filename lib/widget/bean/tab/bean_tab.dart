@@ -47,51 +47,131 @@ class _BeanTabState extends State<BeanTab> {
   }
 
   Widget blackBeanView(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
-    final beanProvider = Provider.of<BeanProvider>(context);
+    return Consumer<AuthProvider>(builder: (context, authProvider, child) {
+      return Consumer<BeanProvider>(builder: (context, beanProvider, child) {
+        return Visibility(
+            visible: monVal,
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: 20, left: 59, right: 59, bottom: 14),
+                  child: Text('HỦ ĐẬU TRĂN TRỞ',
+                      style: Styles.headingExtraPurple,
+                      textAlign: TextAlign.center),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 48, right: 48),
+                  child: Text(
+                      "Bạn đang có " +
+                          authProvider.blackCount.toString() +
+                          " hạt đậu trăn trở.\ngần chạm mức mục tiêu tối thiểu",
+                      style: Styles.bodyGrey,
+                      textAlign: TextAlign.center),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 15, left: 48, right: 48),
+                  child: AnimatedCircularChart(
+                    key: _chartKey2,
+                    size: _chartSize,
+                    initialChartData: Utils.getChartDataBlackBean(
+                        beanProvider.blackTargetCount ?? 0,
+                        authProvider.blackCount),
+                    chartType: CircularChartType.Radial,
+                    edgeStyle: SegmentEdgeStyle.round,
+                    percentageValues: true,
+                    holeLabel: Utils.getTargetBlackBeanComplete(
+                          beanProvider.blackTargetCount ?? 0,
+                          authProvider.blackCount,
+                        ).round().toString() +
+                        "%",
+                    labelStyle: Theme.of(context)
+                        .textTheme
+                        .title
+                        .merge(new TextStyle(color: Color(0xff7b4d0a))),
+                  ),
+                ),
+                Padding(
+                    padding: EdgeInsets.only(bottom: 15, left: 48, right: 48),
+                    child: Text(
+                        "Thời gian: " +
+                            formatDate(DateTime.now(), [dd]) +
+                            " ngày / 1 tháng",
+                        style: Styles.bodyGrey,
+                        textAlign: TextAlign.center)),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 31, left: 60, right: 60),
+                  child: LinearPercentIndicator(
+                    lineHeight: 13.0,
+                    percent:
+                        double.parse(formatDate(DateTime.now(), [dd])) / 30,
+                    backgroundColor: Color(0xffdddddd),
+                    progressColor: Color(0xff316beb),
+                  ),
+                ),
+              ],
+            ));
+      });
+    });
+  }
 
-    return Visibility(
-        visible: monVal,
-        child: Column(
+  Widget whiteBeanView(BuildContext context) {
+    Timer _timer;
+
+    return Consumer<AuthProvider>(builder: (context, authProvider, child) {
+      return Consumer<BeanProvider>(builder: (context, beanProvider, child) {
+        return Column(
           children: [
             Padding(
               padding:
                   EdgeInsets.only(top: 20, left: 59, right: 59, bottom: 14),
-              child: Text('HỦ ĐẬU TRĂN TRỞ',
+              child: Text('HỦ ĐẬU BIẾT ƠN',
                   style: Styles.headingExtraPurple,
                   textAlign: TextAlign.center),
             ),
             Padding(
               padding: EdgeInsets.only(left: 48, right: 48),
               child: Text(
-                  "Bạn đang có " +
-                      authProvider.blackCount.toString() +
-                      " hạt đậu trăn trở.\ngần chạm mức mục tiêu tối thiểu",
+                  "${authProvider.name} đang có " +
+                      authProvider.greenCount.toString() +
+                      " hạt đậu biết ơn.",
                   style: Styles.bodyGrey,
                   textAlign: TextAlign.center),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 15, left: 48, right: 48),
               child: AnimatedCircularChart(
-                key: _chartKey2,
+                key: _chartKey,
                 size: _chartSize,
-                initialChartData: Utils.getChartDataBlackBean(
-                    beanProvider.blackTargetCount ?? 0,
-                    authProvider.blackCount),
+                initialChartData: Utils.getChartDataWhiteBean(
+                    beanProvider.greenTagetCount ?? 0, authProvider.greenCount),
                 chartType: CircularChartType.Radial,
                 edgeStyle: SegmentEdgeStyle.round,
                 percentageValues: true,
-                holeLabel: Utils.getTargetBlackBeanComplete(
-                      beanProvider.blackTargetCount ?? 0,
-                      authProvider.blackCount,
-                    ).round().toString() +
+                holeLabel: Utils.getTargetWhiteBeanComplete(
+                            beanProvider.greenTagetCount ?? 0,
+                            authProvider.greenCount)
+                        .round()
+                        .toString() +
                     "%",
                 labelStyle: Theme.of(context)
                     .textTheme
                     .title
-                    .merge(new TextStyle(color: Color(0xff7b4d0a))),
+                    .merge(new TextStyle(color: labelColor)),
               ),
             ),
+            Padding(
+                padding: EdgeInsets.only(bottom: 15, left: 48, right: 48),
+                child: Text(
+                    "Hoàn thành " +
+                        Utils.getTargetWhiteBeanComplete(
+                                beanProvider.greenTagetCount ?? 0,
+                                authProvider.greenCount)
+                            .round()
+                            .toString() +
+                        "% mục tiêu",
+                    style: Styles.bodyGrey,
+                    textAlign: TextAlign.center)),
             Padding(
                 padding: EdgeInsets.only(bottom: 15, left: 48, right: 48),
                 child: Text(
@@ -109,142 +189,67 @@ class _BeanTabState extends State<BeanTab> {
                 progressColor: Color(0xff316beb),
               ),
             ),
-          ],
-        ));
-  }
-
-  Widget whiteBeanView(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
-    final beanProvider = Provider.of<BeanProvider>(context);
-    Timer _timer;
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(top: 20, left: 59, right: 59, bottom: 14),
-          child: Text('HỦ ĐẬU BIẾT ƠN',
-              style: Styles.headingExtraPurple, textAlign: TextAlign.center),
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: 48, right: 48),
-          child: Text(
-              "${authProvider.name} đang có " +
-                  authProvider.greenCount.toString() +
-                  " hạt đậu biết ơn.",
-              style: Styles.bodyGrey,
-              textAlign: TextAlign.center),
-        ),
-        Padding(
-          padding: EdgeInsets.only(bottom: 15, left: 48, right: 48),
-          child: AnimatedCircularChart(
-            key: _chartKey,
-            size: _chartSize,
-            initialChartData: Utils.getChartDataWhiteBean(
-                beanProvider.greenTagetCount ?? 0, authProvider.greenCount),
-            chartType: CircularChartType.Radial,
-            edgeStyle: SegmentEdgeStyle.round,
-            percentageValues: true,
-            holeLabel: Utils.getTargetWhiteBeanComplete(
-                        beanProvider.greenTagetCount ?? 0,
-                        authProvider.greenCount)
-                    .round()
-                    .toString() +
-                "%",
-            labelStyle: Theme.of(context)
-                .textTheme
-                .title
-                .merge(new TextStyle(color: labelColor)),
-          ),
-        ),
-        Consumer<BeanProvider>(builder: (context, beanProvider, child) {
-          return Padding(
-              padding: EdgeInsets.only(bottom: 15, left: 48, right: 48),
-              child: Text(
-                  "Hoàn thành " +
-                      Utils.getTargetWhiteBeanComplete(
-                              beanProvider.greenTagetCount ?? 0,
-                              authProvider.greenCount)
-                          .round()
-                          .toString() +
-                      "% mục tiêu",
-                  style: Styles.bodyGrey,
-                  textAlign: TextAlign.center));
-        }),
-        Padding(
-            padding: EdgeInsets.only(bottom: 15, left: 48, right: 48),
-            child: Text(
-                "Thời gian: " +
-                    formatDate(DateTime.now(), [dd]) +
-                    " ngày / 1 tháng",
-                style: Styles.bodyGrey,
-                textAlign: TextAlign.center)),
-        Padding(
-          padding: EdgeInsets.only(bottom: 31, left: 60, right: 60),
-          child: LinearPercentIndicator(
-            lineHeight: 13.0,
-            percent: double.parse(formatDate(DateTime.now(), [dd])) / 30,
-            backgroundColor: Color(0xffdddddd),
-            progressColor: Color(0xff316beb),
-          ),
-        ),
-        InkWell(
-            onTap: () {
-              setState(() {
-                monVal = !monVal;
-                if (monVal) {
-                  _timer = new Timer(const Duration(milliseconds: 100), () {
-                    _scrollController.animateTo(
-                        _scrollController.position.maxScrollExtent,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.ease);
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    monVal = !monVal;
+                    if (monVal) {
+                      _timer = new Timer(const Duration(milliseconds: 100), () {
+                        _scrollController.animateTo(
+                            _scrollController.position.maxScrollExtent,
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.ease);
+                      });
+                    }
                   });
-                }
-              });
-            },
-            child: Column(
-              children: [
-                Visibility(
-                    visible: !monVal,
-                    child: Column(
-                      children: [
-                        Padding(
-                            padding:
-                                EdgeInsets.only(bottom: 0, left: 48, right: 48),
-                            child: Text(
-                              'Xem hủ trăn trở',
-                              style: Styles.bodyGreyUnderline,
-                            )),
-                        Padding(
-                            padding:
-                                EdgeInsets.only(bottom: 8, left: 48, right: 48),
-                            child: Icon(
-                              Icons.keyboard_arrow_down,
-                              color: Colors.grey[700],
-                            )),
-                      ],
-                    )),
-                Visibility(
-                    visible: monVal,
-                    child: Column(
-                      children: [
-                        Padding(
-                            padding:
-                                EdgeInsets.only(bottom: 8, left: 48, right: 48),
-                            child: Icon(
-                              Icons.keyboard_arrow_up,
-                              color: Colors.grey[700],
-                            )),
-                        Padding(
-                            padding:
-                                EdgeInsets.only(bottom: 0, left: 48, right: 48),
-                            child: Text(
-                              'Trở về hủ biết ơn',
-                              style: Styles.bodyGreyUnderline,
-                            )),
-                      ],
-                    )),
-              ],
-            )),
-      ],
-    );
+                },
+                child: Column(
+                  children: [
+                    Visibility(
+                        visible: !monVal,
+                        child: Column(
+                          children: [
+                            Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: 0, left: 48, right: 48),
+                                child: Text(
+                                  'Xem hủ trăn trở',
+                                  style: Styles.bodyGreyUnderline,
+                                )),
+                            Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: 8, left: 48, right: 48),
+                                child: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: Colors.grey[700],
+                                )),
+                          ],
+                        )),
+                    Visibility(
+                        visible: monVal,
+                        child: Column(
+                          children: [
+                            Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: 8, left: 48, right: 48),
+                                child: Icon(
+                                  Icons.keyboard_arrow_up,
+                                  color: Colors.grey[700],
+                                )),
+                            Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: 0, left: 48, right: 48),
+                                child: Text(
+                                  'Trở về hủ biết ơn',
+                                  style: Styles.bodyGreyUnderline,
+                                )),
+                          ],
+                        )),
+                  ],
+                )),
+          ],
+        );
+      });
+    });
   }
 }
