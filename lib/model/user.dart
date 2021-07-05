@@ -48,8 +48,8 @@ class User {
     this.bod,
     this.timeLeftForChallenge,
     this.email,
-    this.greenCount,
-    this.blackCount,
+    greenCount,
+    blackCount,
   });
 
   factory User.fromMap(Map<String, dynamic> data) {
