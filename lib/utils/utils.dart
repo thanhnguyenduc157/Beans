@@ -29,7 +29,11 @@ class Utils {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => RelationList(categories: Cacher.categories)),
+        builder: (context) => RelationList(
+          categories: Cacher.categories,
+          selectedCategoryId: 1,
+        ),
+      ),
     );
   }
 

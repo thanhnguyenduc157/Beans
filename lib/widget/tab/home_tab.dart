@@ -261,7 +261,10 @@ class HomeTab extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => RelationList(categories: categories)),
+              builder: (context) => RelationList(
+                    categories: categories,
+                    selectedCategoryId: category.id,
+                  )),
         );
       },
       // The custom button

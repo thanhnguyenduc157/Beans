@@ -8,8 +8,13 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class RelationList extends StatelessWidget {
   final List<RelationalCategory> categories;
+  final int selectedCategoryId;
 
-  const RelationList({Key key, this.categories}) : super(key: key);
+  const RelationList({
+    Key key,
+    this.categories,
+    this.selectedCategoryId = 0,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +25,7 @@ class RelationList extends StatelessWidget {
       },
       child: MaterialApp(
         home: DefaultTabController(
+          initialIndex: selectedCategoryId - 1,
           length: categories.length,
           child: Scaffold(
             backgroundColor: Colors.white,
@@ -46,7 +52,9 @@ class RelationList extends StatelessWidget {
                     indicatorSize: TabBarIndicatorSize.label,
                     labelPadding: EdgeInsets.only(top: 10),
                     tabs: categories
-                        .map((cat) => Tab(text: cat.name.toUpperCase()))
+                        .map((cat) => Tab(
+                              text: cat.name.toUpperCase(),
+                            ))
                         .toList(),
                   ),
                 ),
