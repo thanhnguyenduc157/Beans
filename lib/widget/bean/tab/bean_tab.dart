@@ -63,9 +63,9 @@ class _BeanTabState extends State<BeanTab> {
                 Padding(
                   padding: EdgeInsets.only(left: 48, right: 48),
                   child: Text(
-                      "Bạn đang có " +
-                          authProvider.blackCount.toString() +
-                          " hạt đậu trăn trở.\ngần chạm mức mục tiêu tối thiểu",
+                      "Bạn đang có " + authProvider?.blackCount?.toString() ??
+                          "" +
+                              " hạt đậu trăn trở.\ngần chạm mức mục tiêu tối thiểu",
                       style: Styles.bodyGrey,
                       textAlign: TextAlign.center),
                 ),
@@ -75,14 +75,14 @@ class _BeanTabState extends State<BeanTab> {
                     key: _chartKey2,
                     size: _chartSize,
                     initialChartData: Utils.getChartDataBlackBean(
-                        beanProvider.blackTargetCount ?? 0,
-                        authProvider.blackCount),
+                        beanProvider?.blackTargetCount ?? 0,
+                        authProvider?.blackCount ?? 0),
                     chartType: CircularChartType.Radial,
                     edgeStyle: SegmentEdgeStyle.round,
                     percentageValues: true,
                     holeLabel: Utils.getTargetBlackBeanComplete(
-                          beanProvider.blackTargetCount ?? 0,
-                          authProvider.blackCount,
+                          beanProvider?.blackTargetCount ?? 0,
+                          authProvider?.blackCount ?? 0,
                         ).round().toString() +
                         "%",
                     labelStyle: Theme.of(context)

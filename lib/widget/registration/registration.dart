@@ -192,8 +192,8 @@ class Registration extends StatelessWidget {
                 }
               },
               initialDateTime: selectedDate,
-              minimumYear: 2000,
-              maximumYear: 2025,
+              minimumYear: 1940,
+              maximumYear: DateTime.now().year,
             ),
           );
         });
@@ -357,7 +357,6 @@ class Registration extends StatelessWidget {
       ),
     );
   }
-
 
   Widget createTerm(RegistrationProvider registration) {
     return InkWell(

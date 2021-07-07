@@ -32,8 +32,8 @@ extension ParseToAgeRange on String {
 class User {
   final int id;
   int currentChallengeLogId;
-  int greenCount = 0;
-  int blackCount = 0;
+  int greenCount;
+  int blackCount;
   String name;
   String pin;
   String bod;
@@ -48,8 +48,8 @@ class User {
     this.bod,
     this.timeLeftForChallenge,
     this.email,
-    greenCount,
-    blackCount,
+    this.greenCount = 0,
+    this.blackCount = 0,
   });
 
   factory User.fromMap(Map<String, dynamic> data) {

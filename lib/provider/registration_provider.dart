@@ -72,7 +72,12 @@ class RegistrationProvider with ChangeNotifier {
 
   register() async {
     final user = User(
-        name: name, pin: pin, bod: bod, email: email);
+      id: 1,
+      name: name,
+      pin: pin,
+      bod: bod,
+      email: email,
+    );
 
     await _authProvider.register(user);
   }

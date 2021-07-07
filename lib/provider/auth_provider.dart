@@ -15,12 +15,12 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String get dob => _user.bod;
+  String get dob => _user?.bod ?? "";
 
-  String get name => _user.name;
-  String get pin => _user.pin;
-  int get greenCount => _user.greenCount;
-  int get blackCount => _user.blackCount;
+  String get name => _user?.name ?? "";
+  String get pin => _user?.pin ?? "";
+  int get greenCount => _user?.greenCount ?? 0;
+  int get blackCount => _user?.blackCount ?? 0;
 
   User _user;
   final _userDao = UserDao();
@@ -51,7 +51,6 @@ class AuthProvider with ChangeNotifier {
     _userDao.update(_user);
     notifyListeners();
   }
-
 
   updateBean(int greenCount, int blackCount) async {
     _user.greenCount += greenCount;

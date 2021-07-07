@@ -8,9 +8,9 @@ class BeanProvider with ChangeNotifier {
 
   final _targetDao = TargetDao();
 
-  int get greenTagetCount => target.greenCount;
+  int get greenTagetCount => target?.greenCount ?? 0;
 
-  int get blackTargetCount => target.blackCount;
+  int get blackTargetCount => target?.blackCount ?? 0;
 
   BeanProvider() {
     getTarget();
