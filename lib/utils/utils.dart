@@ -1,12 +1,12 @@
 import 'dart:io';
-import 'package:beans/utils/cacher.dart';
-import 'package:beans/widget/relation/relation_list.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
+import 'package:beans/utils/cacher.dart';
 import 'package:beans/widget/relation/confess/confess_success.dart';
+import 'package:beans/widget/relation/relation_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_circular_chart/flutter_circular_chart.dart';
+import 'package:intl/intl.dart';
 
 class Utils {
   static Widget getIconBack() {
@@ -71,8 +71,11 @@ class Utils {
       int blackBeanCount, int currentBlackBeanCount) {
     Color dialColor = Color(0xff83380e);
     Color dialColor2 = Color(0xffe3e3e3);
+    int countTarget = 30;
+
+    if (blackBeanCount > 0) countTarget = blackBeanCount;
     double current =
-        getTargetBlackBeanComplete(blackBeanCount, currentBlackBeanCount);
+        getTargetBlackBeanComplete(countTarget, currentBlackBeanCount);
     if (current < 100) {
       return <CircularStackEntry>[
         new CircularStackEntry(
@@ -111,8 +114,11 @@ class Utils {
       int whiteBeanCount, int currentWhiteBeanCount) {
     Color dialColor = Color(0xfff6d76a);
     Color dialColor2 = Color(0xffe3e3e3);
+    int countTarget = 30;
+    if (whiteBeanCount > 0) countTarget = whiteBeanCount;
+
     double current =
-        getTargetWhiteBeanComplete(whiteBeanCount, currentWhiteBeanCount);
+        getTargetWhiteBeanComplete(countTarget, currentWhiteBeanCount);
     if (current < 100) {
       return <CircularStackEntry>[
         new CircularStackEntry(

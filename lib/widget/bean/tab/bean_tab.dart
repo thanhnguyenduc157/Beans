@@ -75,13 +75,13 @@ class _BeanTabState extends State<BeanTab> {
                     key: _chartKey2,
                     size: _chartSize,
                     initialChartData: Utils.getChartDataBlackBean(
-                        beanProvider?.blackTargetCount ?? 0,
+                        beanProvider?.blackTargetCount ?? 30,
                         authProvider?.blackCount ?? 0),
                     chartType: CircularChartType.Radial,
                     edgeStyle: SegmentEdgeStyle.round,
                     percentageValues: true,
                     holeLabel: Utils.getTargetBlackBeanComplete(
-                          beanProvider?.blackTargetCount ?? 0,
+                      beanProvider?.blackTargetCount ?? 30,
                           authProvider?.blackCount ?? 0,
                         ).round().toString() +
                         "%",
@@ -144,12 +144,13 @@ class _BeanTabState extends State<BeanTab> {
                 key: _chartKey,
                 size: _chartSize,
                 initialChartData: Utils.getChartDataWhiteBean(
-                    beanProvider.greenTagetCount ?? 0, authProvider.greenCount),
+                    beanProvider.greenTagetCount ?? 30,
+                    authProvider.greenCount),
                 chartType: CircularChartType.Radial,
                 edgeStyle: SegmentEdgeStyle.round,
                 percentageValues: true,
                 holeLabel: Utils.getTargetWhiteBeanComplete(
-                            beanProvider.greenTagetCount ?? 0,
+                            beanProvider.greenTagetCount ?? 30,
                             authProvider.greenCount)
                         .round()
                         .toString() +
@@ -165,7 +166,7 @@ class _BeanTabState extends State<BeanTab> {
                 child: Text(
                     "Hoàn thành " +
                         Utils.getTargetWhiteBeanComplete(
-                                beanProvider.greenTagetCount ?? 0,
+                            beanProvider.greenTagetCount ?? 30,
                                 authProvider.greenCount)
                             .round()
                             .toString() +
