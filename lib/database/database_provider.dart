@@ -81,10 +81,10 @@ class DatabaseProvider {
   String createTableBadges() {
     return '''
         CREATE TABLE $badgesTable (
-        id INTEGER PRIMARY KEY, 
-        name TEXT, 
-        description TEXT, 
-        received_at TEXT 
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        description TEXT,
+        received_at TEXT
         );
         ''';
   }
@@ -92,8 +92,8 @@ class DatabaseProvider {
   String createTableChallenges() {
     return '''
       CREATE TABLE $challengesTable (
-        id INTEGER PRIMARY KEY, 
-        name TEXT 
+        id INTEGER PRIMARY KEY,
+        name TEXT
         );
         ''';
   }
@@ -101,11 +101,11 @@ class DatabaseProvider {
   String createTableChallengeLogs() {
     return '''
       CREATE TABLE $challengeLogsTable (
-        id INTEGER PRIMARY KEY, 
-        challenge_id INTEGER, 
-        is_done INTEGER, 
-        created_at TEXT, 
-        due_at TEXT 
+        id INTEGER PRIMARY KEY,
+        challenge_id INTEGER,
+        is_done INTEGER,
+        created_at TEXT,
+        due_at TEXT
         );
     ''';
   }
@@ -113,8 +113,8 @@ class DatabaseProvider {
   String createTableGodWords() {
     return '''
         CREATE TABLE $godWordsTable (
-        id INTEGER PRIMARY KEY, 
-        word TEXT 
+        id INTEGER PRIMARY KEY,
+        word TEXT
         );
     ''';
   }
@@ -122,11 +122,11 @@ class DatabaseProvider {
   String createTableSchedules() {
     return '''
         CREATE TABLE $schedulesTable (
-        id INTEGER PRIMARY KEY, 
+        id INTEGER PRIMARY KEY,
         schedule_type_id INTEGER,
-        description TEXT, 
-        location TEXT, 
-        time TEXT 
+        description TEXT,
+        location TEXT,
+        time TEXT
         );
     ''';
   }
@@ -134,8 +134,8 @@ class DatabaseProvider {
   String createTableScheduleTypes() {
     return '''
         CREATE TABLE $scheduleTypesTable (
-        id INTEGER PRIMARY KEY, 
-        name TEXT 
+        id INTEGER PRIMARY KEY,
+        name TEXT
         );
     ''';
   }
@@ -143,9 +143,9 @@ class DatabaseProvider {
   String createTableRelationalCategories() {
     return '''
         CREATE TABLE $relationalCategoriesTable (
-        id INTEGER PRIMARY KEY, 
+        id INTEGER PRIMARY KEY,
         name TEXT,
-        icon TEXT 
+        icon TEXT
         );
     ''';
   }
@@ -153,10 +153,10 @@ class DatabaseProvider {
   String createTableRelationalSubcategories() {
     return '''
         CREATE TABLE $relationalSubcategoriesTable (
-        id INTEGER PRIMARY KEY, 
+        id INTEGER PRIMARY KEY,
         relational_category_id INTEGER,
         name TEXT,
-        description TEXT 
+        description TEXT
         );
     ''';
   }
@@ -164,7 +164,7 @@ class DatabaseProvider {
   String createTableRelationalSubcategoryDetails() {
     return '''
         CREATE TABLE $relationalSubcategoryDetailsTable (
-        id INTEGER PRIMARY KEY, 
+        id INTEGER PRIMARY KEY,
         relational_subcategory_id INTEGER,
         description TEXT
         );
@@ -174,13 +174,13 @@ class DatabaseProvider {
   String createTableRelationalItems() {
     return '''
         CREATE TABLE $relationalItemsTable (
-        id INTEGER PRIMARY KEY, 
+        id INTEGER PRIMARY KEY,
         created_at TEXT ,
         relational_category_id INTEGER,
         relational_subcategory_id INTEGER,
-        relational_subcategory_detail_id INTEGER, 
-        is_grateful INTEGER, 
-        is_other INTEGER DEFAULT 0, 
+        relational_subcategory_detail_id INTEGER,
+        is_grateful INTEGER,
+        is_other INTEGER DEFAULT 0,
         name TEXT,
         is_Confess INTEGER DEFAULT 0);
         ''';
@@ -189,12 +189,12 @@ class DatabaseProvider {
   String createTableRelationalReasons() {
     return '''
  CREATE TABLE $relationalReasonsTable (
-        id INTEGER PRIMARY KEY, 
+        id INTEGER PRIMARY KEY,
         relational_category_id INTEGER,
         relational_subcategory_id INTEGER,
-        relational_subcategory_detail_id INTEGER, 
-        is_grateful INTEGER, 
-        is_other INTEGER DEFAULT 0, 
+        relational_subcategory_detail_id INTEGER,
+        is_grateful INTEGER,
+        is_other INTEGER DEFAULT 0,
         name TEXT
         );
     ''';
@@ -203,9 +203,9 @@ class DatabaseProvider {
   String createTableRelationalItemReasons() {
     return '''
      CREATE TABLE $relationalItemReasonsTable (
-        id INTEGER PRIMARY KEY, 
-        relational_reason_id INTEGER, 
-        relational_item_id INTEGER 
+        id INTEGER PRIMARY KEY,
+        relational_reason_id INTEGER,
+        relational_item_id INTEGER
         );
     ''';
   }
@@ -213,9 +213,9 @@ class DatabaseProvider {
   String createTableTargets() {
     return '''
         CREATE TABLE $targetsTable (
-        id INTEGER PRIMARY KEY, 
-        green_count INTEGER, 
-        black_count INTEGER, 
+        id INTEGER PRIMARY KEY,
+        green_count INTEGER,
+        black_count INTEGER,
         due_at TEXT
         );
     ''';
@@ -224,8 +224,8 @@ class DatabaseProvider {
   String createTableUsers() {
     return '''
         CREATE TABLE $usersTable (
-        id INTEGER PRIMARY KEY, 
-        current_challenge_log_id INTEGER, 
+        id INTEGER PRIMARY KEY,
+        current_challenge_log_id INTEGER,
         name TEXT,
         pin TEXT,
         bod TEXT,
@@ -403,8 +403,8 @@ class DatabaseProvider {
     INSERT INTO $relationalCategoriesTable (id, name, icon)
     VALUES
     (1, "Yêu Chúa", "${R.ic_god}"),
-    (2, "Yêu Người", "${R.ic_other_guys}"),
-    (3, "Yêu Mình", "${R.ic_myself}");
+    (2, "Yêu Mình", "${R.ic_myself}"),
+    (3, "Yêu Người", "${R.ic_other_guys}");
     ''';
   }
 
@@ -415,18 +415,17 @@ class DatabaseProvider {
     (1, 1, "Thờ phượng Chúa", "- Điều răn 1 -"),
     (2, 1, "Tôn vinh Danh Chúa","- Điều răn 2 -"),
     (3, 1, "Thánh hóa ngày của Chúa", "- Điều răn 3 -"),
-    
+
     (4, 2, "Sức khoẻ và mạng sống","- Điều răn 5 -"),
     (5, 2, "Cam kết yêu thương", "- Điều răn 6 -"),
     (6, 2, "Công bằng và của cải", "- Điều răn 7 & 10 -"),
     (7, 2, "Sự Thật và Danh Dự", "- Điều răn 8 -"),
-    
+
     (8, 3, "Yêu ông bà, cha mẹ và đất nước", "- Điều răn 4 -"),
     (9, 3, "Mạng sống và phẩm giá","- Điều răn 5 -"),
-    (10, 3, "Cam kết yêu thương", "- Điều răn 6 & 9 -");
-    (11, 2, "Công bằng và của cải", "- Điều răn 7 & 10 -"),
-    (12, 2, "Công bằng và của cải", "- Điều răn 7 & 10 -"),
-    (13, 2, "Sự Thật và Danh Dự", "- Điều răn 8 -");
+    (10, 3, "Cam kết yêu thương", "- Điều răn 6 & 9 -"),
+    (11, 3, "Công bằng và của cải", "- Điều răn 7 & 10 -"),
+    (12, 3, "Sự Thật và Danh Dự", "- Điều răn 8 -");
     ''';
   }
 
@@ -449,7 +448,7 @@ class DatabaseProvider {
 
     (9, 6, "Công bằng với chính mình"),
     (10, 6, "Của cải vật chất."),
-    
+
     (11, 7, "Trung thực với chính mình"),
     (12, 7, "Bảo vệ danh dự của mình"),
 
@@ -459,7 +458,7 @@ class DatabaseProvider {
 
     (16, 9, "Sự sống của người khác"),
     (17, 9, "Phẩm giá và quyền bình đẳng của người khác"),
-    
+
     (18, 10, "Khiết tịnh"),
     (19, 10, "Hôn nhân"),
 
