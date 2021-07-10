@@ -8,6 +8,7 @@ import 'package:beans/value/styles.dart';
 import 'package:beans/widget/confess/done/confess_done.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -23,13 +24,23 @@ class _ConfessListState extends State<ConfessList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: GradientAppBar(
+        elevation: 0,
+        brightness: Brightness.light,
+        gradient: GradientApp.gradientAppbar,
+        leading: IconButton(
+          icon: Utils.getIconBack(),
+          color: Color(0xff88674d),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
       body: SingleChildScrollView(
           child: ChangeNotifierProvider<ConfessProvider>(
         create: (context) => ConfessProvider(),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 60, bottom: 0, left: 50, right: 50),
+              padding: EdgeInsets.only(top: 0, bottom: 0, left: 50, right: 50),
               child: Text('BẢN XÉT MÌNH',
                   style: Styles.extraHeadingPurple,
                   textAlign: TextAlign.center),
